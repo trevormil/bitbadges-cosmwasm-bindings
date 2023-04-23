@@ -1,0 +1,11 @@
+{
+    "send_msg": {
+        "to_address": "",
+        "amount": [
+            {
+                "amount": "1000",
+                "denom": "abitbadges"
+            }
+        ]
+    }
+}

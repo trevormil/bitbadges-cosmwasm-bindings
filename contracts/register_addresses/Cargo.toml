@@ -1,0 +1,32 @@
+[package]
+name = "native-tester"
+version = "0.0.1"
+authors = ["Angel Valkov <angel.valkov@limechain.tech>"]
+edition = "2021"
+description = "simple tester for native modules"
+license = "Apache-2.0"
+repository = "https://github.com/CudoVentures/bitbadges-cosmwasm-bindings"
+homepage = "https://www.bitbadges.org/"
+documentation = "https://docs.bitbadges.org/"
+readme = "README.md"
+
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+backtraces = ["cosmwasm-std/backtraces"]
+library = []
+
+[dependencies]
+cosmwasm-std = { version = "1.0.0-beta", features = ["staking", "stargate"] }
+cosmwasm-storage = { version = "1.0.0-beta" }
+schemars = "0.8.1"
+serde = { version = "1.0.103", default-features = false, features = ["derive"] }
+snafu = { version = "0.6.3" }
+thiserror = "1.0"
+bitbadges-cosmwasm = { path = "../../packages/bitbadges-cosmwasm" }
+
+[dev-dependencies]
+# we only need to enable this if we use integration tests
+cosmwasm-schema = { version = "1.0.0-beta" }
