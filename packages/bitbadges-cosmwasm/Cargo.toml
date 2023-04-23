@@ -5,7 +5,7 @@ authors = ["Lyubomir Yonchev <lyubomir.yonchev@limechain.tech>", "Trevor Miller 
 edition = "2018"
 description = "Bindings for CosmWasm contracts to call into custom modules of BitBadges Node"
 repository = "https://github.com/bitbadges/bitbadges-cosmwasm-bindings"
-# license = "Apache-2.0" TODO:
+license = "Apache-2.0"
 readme = "README.md"
 
 [features]
