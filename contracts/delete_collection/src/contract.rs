@@ -1,4 +1,4 @@
-use bitbadges_cosmwasm::{create_register_addresses_msg, BitBadgesMsg};
+use bitbadges_cosmwasm::{delete_collection_msg, BitBadgesMsg};
 
 use cosmwasm_std::{
     entry_point, DepsMut, Env, MessageInfo, Response, StdError, StdResult,
@@ -24,19 +24,19 @@ pub fn execute(
     msg: ExecuteMsg,
 ) -> Result<Response<BitBadgesMsg>, StdError> {
     match msg {
-        ExecuteMsg::RegisterAddressesMsg {
-            addresses_to_register,
-        } => execute_msg_register_addresses(addresses_to_register),
+        ExecuteMsg::DeleteCollectionMsg { collection_id } => {
+          execute_msg_delete_collection(collection_id)
+        }
 
         // Add other messages here as needed
     }
 }
 
-pub fn execute_msg_register_addresses(
-    addresses_to_register: Vec<String>,
+pub fn execute_msg_delete_collection(
+    collection_id: u64,
 ) -> StdResult<Response<BitBadgesMsg>> {
-    let msg = create_register_addresses_msg(
-        addresses_to_register,
+    let msg = delete_collection_msg(
+        collection_id,
     );
 
     Ok(Response::new().add_message(msg))

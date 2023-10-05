@@ -9,8 +9,8 @@ pub struct InstantiateMsg {}
 #[serde(rename_all = "camelCase")]
 pub enum ExecuteMsg {
     #[serde(rename_all = "camelCase")]
-    RegisterAddressesMsg {
-        addresses_to_register: Vec<String>,
+    DeleteCollectionMsg {
+        collection_id: u64,
     },
     // Add other messages here as needed
     // Same format as above

@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use cosmwasm_std::CustomQuery;
 
-use crate::msg::{UserBalance, BadgeCollection};
+// use crate::msg::{UserBalance, BadgeCollection};
 
 // implement custom query
 impl CustomQuery for BitBadgesQuery {}
@@ -12,19 +12,19 @@ impl CustomQuery for BitBadgesQuery {}
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub enum BitBadgesQuery {
-    #[serde(rename_all = "camelCase")]
-    QueryAddressById {
-        id: u64,
-    },
+    // #[serde(rename_all = "camelCase")]
+    // QueryAddressById {
+    //     id: u64,
+    // },
     #[serde(rename_all = "camelCase")]
     QueryCollection {
         id: u64,
     },
-    #[serde(rename_all = "camelCase")]
-    QueryBalance {
-        badge_id: u64,
-        address: String,
-    },
+    // #[serde(rename_all = "camelCase")]
+    // QueryBalance {
+    //     badge_id: u64,
+    //     address: String,
+    // },
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -32,15 +32,15 @@ pub struct QueryAddressByIdResponse {
     pub address: String, //cosmos address
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct QueryCollectionResponse {
-    pub collection: BadgeCollection,
-}
+// #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+// pub struct QueryCollectionResponse {
+//     pub collection: BadgeCollection,
+// }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct QueryBalanceResponse {
-    pub balance: UserBalance,
-}
+// #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+// pub struct QueryBalanceResponse {
+//     pub balance: UserBalance,
+// }
 
 
 // #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]

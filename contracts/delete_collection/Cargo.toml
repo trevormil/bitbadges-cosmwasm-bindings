@@ -6,8 +6,8 @@ edition = "2021"
 description = "simple tester for native modules"
 license = "Apache-2.0"
 repository = "https://github.com/CudoVentures/bitbadges-cosmwasm-bindings"
-homepage = "https://www.bitbadges.org/"
-documentation = "https://docs.bitbadges.org/"
+homepage = "https://www.bitbadges.io/"
+documentation = "https://docs.bitbadges.io/"
 readme = "README.md"
 
 
