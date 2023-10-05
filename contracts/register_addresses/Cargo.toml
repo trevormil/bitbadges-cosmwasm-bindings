@@ -26,6 +26,7 @@ serde = { version = "1.0.103", default-features = false, features = ["derive"] }
 snafu = { version = "0.6.3" }
 thiserror = "1.0"
 bitbadges-cosmwasm = { path = "../../packages/bitbadges-cosmwasm" }
+# bitbadges-cosmwasm = { version = "0.0.2" }
 
 [dev-dependencies]
 # we only need to enable this if we use integration tests
