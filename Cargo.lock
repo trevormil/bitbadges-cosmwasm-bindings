@@ -204,6 +204,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "delete_collection"
+version = "0.0.1"
+dependencies = [
+ "bitbadges-cosmwasm",
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cosmwasm-storage",
+ "schemars",
+ "serde",
+ "snafu",
+ "thiserror",
+]
+
+[[package]]
 name = "der"
 version = "0.7.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -403,20 +417,6 @@ name = "libc"
 version = "0.2.148"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9cdc71e17332e86d2e1d38c1f99edcb6288ee11b815fb1a4b049eaa2114d369b"
-
-[[package]]
-name = "native-tester"
-version = "0.0.1"
-dependencies = [
- "bitbadges-cosmwasm",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cosmwasm-storage",
- "schemars",
- "serde",
- "snafu",
- "thiserror",
-]
 
 [[package]]
 name = "once_cell"

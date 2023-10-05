@@ -1,5 +1,5 @@
 [package]
-name = "native-tester"
+name = "delete_collection"
 version = "0.0.1"
 authors = ["Angel Valkov <angel.valkov@limechain.tech>"]
 edition = "2021"
