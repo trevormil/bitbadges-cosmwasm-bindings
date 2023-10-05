@@ -14,9 +14,9 @@ bitbadges-cosmwasm = { version = "X.X.X" }
 
 ## Creating Messages
 ​
-**NOTE:** The BitBadges bindings do not cover messages that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`.
+**NOTE:** The BitBadges bindings do not cover messages that have already been implemented by the CosmWasm team or other libraries, such as staking-related messages and fundamental ones like `MsgSend`.
 ​
-You may want your contract to perform messages such as `MintBadge` and `RegisterAddresses` operations at the end of its execution. To do this, create a message using the predefined functions:
+You may want your contract to perform x/badges messages operations at the end of its execution. To do this, create a message using the predefined functions:
 ​
 - `create_register_addresses_msg`
 - ...
