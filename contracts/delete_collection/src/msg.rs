@@ -10,7 +10,7 @@ pub struct InstantiateMsg {}
 pub enum ExecuteMsg {
     #[serde(rename_all = "camelCase")]
     DeleteCollectionMsg {
-        collection_id: u64,
+        collection_id: String,
     },
     // Add other messages here as needed
     // Same format as above

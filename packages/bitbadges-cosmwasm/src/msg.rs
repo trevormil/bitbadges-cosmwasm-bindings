@@ -20,12 +20,13 @@ impl From<BitBadgesMsg> for CosmosMsg<BitBadgesMsg> {
 pub enum BitBadgesMsg {
   #[serde(rename_all = "camelCase")]
   DeleteCollectionMsg {
-      collection_id: u64,
+      //As a string
+      collection_id: String, 
   },
 }
 
 pub fn delete_collection_msg(
-    collection_id: u64,
+    collection_id: String,
 ) -> CosmosMsg<BitBadgesMsg> {
     BitBadgesMsg::DeleteCollectionMsg {
         collection_id,

@@ -33,7 +33,7 @@ pub fn execute(
 }
 
 pub fn execute_msg_delete_collection(
-    collection_id: u64,
+    collection_id: String,
 ) -> StdResult<Response<BitBadgesMsg>> {
     let msg = delete_collection_msg(
         collection_id,
