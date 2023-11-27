@@ -12,13 +12,151 @@
         "queryCollection": {
           "type": "object",
           "required": [
-            "id"
+            "collectionId"
           ],
           "properties": {
-            "id": {
-              "type": "integer",
-              "format": "uint64",
-              "minimum": 0.0
+            "collectionId": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "queryAddressById"
+      ],
+      "properties": {
+        "queryAddressById": {
+          "type": "object",
+          "required": [
+            "address"
+          ],
+          "properties": {
+            "address": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "queryBalance"
+      ],
+      "properties": {
+        "queryBalance": {
+          "type": "object",
+          "required": [
+            "address",
+            "collectionId"
+          ],
+          "properties": {
+            "address": {
+              "type": "string"
+            },
+            "collectionId": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "queryAddressMapping"
+      ],
+      "properties": {
+        "queryAddressMapping": {
+          "type": "object",
+          "required": [
+            "mappingId"
+          ],
+          "properties": {
+            "mappingId": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "queryApprovalsTracker"
+      ],
+      "properties": {
+        "queryApprovalsTracker": {
+          "type": "object",
+          "required": [
+            "amountTrackerId",
+            "approvalLevel",
+            "approvedAddress",
+            "approverAddress",
+            "collectionId",
+            "trackerType"
+          ],
+          "properties": {
+            "amountTrackerId": {
+              "type": "string"
+            },
+            "approvalLevel": {
+              "type": "string"
+            },
+            "approvedAddress": {
+              "type": "string"
+            },
+            "approverAddress": {
+              "type": "string"
+            },
+            "collectionId": {
+              "type": "string"
+            },
+            "trackerType": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "queryNumUsedForMerkleChallenge"
+      ],
+      "properties": {
+        "queryNumUsedForMerkleChallenge": {
+          "type": "object",
+          "required": [
+            "approvalLevel",
+            "approverAddress",
+            "challengeTrackerId",
+            "collectionId",
+            "leafIndex"
+          ],
+          "properties": {
+            "approvalLevel": {
+              "type": "string"
+            },
+            "approverAddress": {
+              "type": "string"
+            },
+            "challengeTrackerId": {
+              "type": "string"
+            },
+            "collectionId": {
+              "type": "string"
+            },
+            "leafIndex": {
+              "type": "string"
             }
           }
         }

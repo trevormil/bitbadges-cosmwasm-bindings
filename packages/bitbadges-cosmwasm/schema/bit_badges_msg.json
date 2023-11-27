@@ -21,6 +21,1738 @@
         }
       },
       "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "createAddressMappingsMsg"
+      ],
+      "properties": {
+        "createAddressMappingsMsg": {
+          "type": "object",
+          "required": [
+            "address_mappings"
+          ],
+          "properties": {
+            "address_mappings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AddressMapping"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "transferBadgeMsg"
+      ],
+      "properties": {
+        "transferBadgeMsg": {
+          "type": "object",
+          "required": [
+            "collection_id",
+            "transfers"
+          ],
+          "properties": {
+            "collection_id": {
+              "type": "string"
+            },
+            "transfers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Transfer"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "createCollectionMsg"
+      ],
+      "properties": {
+        "createCollectionMsg": {
+          "type": "object",
+          "required": [
+            "badge_metadata_timeline",
+            "badges_to_create",
+            "balances_type",
+            "collection_approvals",
+            "collection_metadata_timeline",
+            "collection_permissions",
+            "custom_data_timeline",
+            "default_auto_approve_self_initiated_incoming_transfers",
+            "default_auto_approve_self_initiated_outgoing_transfers",
+            "default_incoming_approvals",
+            "default_outgoing_approvals",
+            "default_user_permissions",
+            "is_archived_timeline",
+            "manager_timeline",
+            "off_chain_balances_metadata_timeline",
+            "standards_timeline"
+          ],
+          "properties": {
+            "badge_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BadgeMetadataTimeline"
+              }
+            },
+            "badges_to_create": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Balance"
+              }
+            },
+            "balances_type": {
+              "type": "string"
+            },
+            "collection_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CollectionApproval"
+              }
+            },
+            "collection_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CollectionMetadataTimeline"
+              }
+            },
+            "collection_permissions": {
+              "$ref": "#/definitions/CollectionPermissions"
+            },
+            "custom_data_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomDataTimeline"
+              }
+            },
+            "default_auto_approve_self_initiated_incoming_transfers": {
+              "type": "boolean"
+            },
+            "default_auto_approve_self_initiated_outgoing_transfers": {
+              "type": "boolean"
+            },
+            "default_incoming_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserIncomingApproval"
+              }
+            },
+            "default_outgoing_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserOutgoingApproval"
+              }
+            },
+            "default_user_permissions": {
+              "$ref": "#/definitions/UserPermissions"
+            },
+            "is_archived_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IsArchivedTimeline"
+              }
+            },
+            "manager_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ManagerTimeline"
+              }
+            },
+            "off_chain_balances_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OffChainBalancesMetadataTimeline"
+              }
+            },
+            "standards_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StandardsTimeline"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "updateCollectionMsg"
+      ],
+      "properties": {
+        "updateCollectionMsg": {
+          "type": "object",
+          "required": [
+            "badge_metadata_timeline",
+            "badges_to_create",
+            "collection_approvals",
+            "collection_id",
+            "collection_metadata_timeline",
+            "collection_permissions",
+            "custom_data_timeline",
+            "is_archived_timeline",
+            "manager_timeline",
+            "off_chain_balances_metadata_timeline",
+            "standards_timeline",
+            "update_badge_metadata_timeline",
+            "update_collection_approvals",
+            "update_collection_metadata_timeline",
+            "update_collection_permissions",
+            "update_custom_data_timeline",
+            "update_is_archived_timeline",
+            "update_manager_timeline",
+            "update_off_chain_balances_metadata_timeline",
+            "update_standards_timeline"
+          ],
+          "properties": {
+            "badge_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BadgeMetadataTimeline"
+              }
+            },
+            "badges_to_create": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Balance"
+              }
+            },
+            "collection_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CollectionApproval"
+              }
+            },
+            "collection_id": {
+              "type": "string"
+            },
+            "collection_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CollectionMetadataTimeline"
+              }
+            },
+            "collection_permissions": {
+              "$ref": "#/definitions/CollectionPermissions"
+            },
+            "custom_data_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomDataTimeline"
+              }
+            },
+            "is_archived_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IsArchivedTimeline"
+              }
+            },
+            "manager_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ManagerTimeline"
+              }
+            },
+            "off_chain_balances_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OffChainBalancesMetadataTimeline"
+              }
+            },
+            "standards_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StandardsTimeline"
+              }
+            },
+            "update_badge_metadata_timeline": {
+              "type": "boolean"
+            },
+            "update_collection_approvals": {
+              "type": "boolean"
+            },
+            "update_collection_metadata_timeline": {
+              "type": "boolean"
+            },
+            "update_collection_permissions": {
+              "type": "boolean"
+            },
+            "update_custom_data_timeline": {
+              "type": "boolean"
+            },
+            "update_is_archived_timeline": {
+              "type": "boolean"
+            },
+            "update_manager_timeline": {
+              "type": "boolean"
+            },
+            "update_off_chain_balances_metadata_timeline": {
+              "type": "boolean"
+            },
+            "update_standards_timeline": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "universalUpdateCollectionMsg"
+      ],
+      "properties": {
+        "universalUpdateCollectionMsg": {
+          "type": "object",
+          "required": [
+            "badge_metadata_timeline",
+            "badges_to_create",
+            "balances_type",
+            "collection_approvals",
+            "collection_id",
+            "collection_metadata_timeline",
+            "collection_permissions",
+            "custom_data_timeline",
+            "default_auto_approve_self_initiated_incoming_transfers",
+            "default_auto_approve_self_initiated_outgoing_transfers",
+            "default_incoming_approvals",
+            "default_outgoing_approvals",
+            "default_user_permissions",
+            "is_archived_timeline",
+            "manager_timeline",
+            "off_chain_balances_metadata_timeline",
+            "standards_timeline",
+            "update_badge_metadata_timeline",
+            "update_collection_approvals",
+            "update_collection_metadata_timeline",
+            "update_collection_permissions",
+            "update_custom_data_timeline",
+            "update_is_archived_timeline",
+            "update_manager_timeline",
+            "update_off_chain_balances_metadata_timeline",
+            "update_standards_timeline"
+          ],
+          "properties": {
+            "badge_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BadgeMetadataTimeline"
+              }
+            },
+            "badges_to_create": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Balance"
+              }
+            },
+            "balances_type": {
+              "type": "string"
+            },
+            "collection_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CollectionApproval"
+              }
+            },
+            "collection_id": {
+              "type": "string"
+            },
+            "collection_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CollectionMetadataTimeline"
+              }
+            },
+            "collection_permissions": {
+              "$ref": "#/definitions/CollectionPermissions"
+            },
+            "custom_data_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomDataTimeline"
+              }
+            },
+            "default_auto_approve_self_initiated_incoming_transfers": {
+              "type": "boolean"
+            },
+            "default_auto_approve_self_initiated_outgoing_transfers": {
+              "type": "boolean"
+            },
+            "default_incoming_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserIncomingApproval"
+              }
+            },
+            "default_outgoing_approvals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserOutgoingApproval"
+              }
+            },
+            "default_user_permissions": {
+              "$ref": "#/definitions/UserPermissions"
+            },
+            "is_archived_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IsArchivedTimeline"
+              }
+            },
+            "manager_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ManagerTimeline"
+              }
+            },
+            "off_chain_balances_metadata_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/OffChainBalancesMetadataTimeline"
+              }
+            },
+            "standards_timeline": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StandardsTimeline"
+              }
+            },
+            "update_badge_metadata_timeline": {
+              "type": "boolean"
+            },
+            "update_collection_approvals": {
+              "type": "boolean"
+            },
+            "update_collection_metadata_timeline": {
+              "type": "boolean"
+            },
+            "update_collection_permissions": {
+              "type": "boolean"
+            },
+            "update_custom_data_timeline": {
+              "type": "boolean"
+            },
+            "update_is_archived_timeline": {
+              "type": "boolean"
+            },
+            "update_manager_timeline": {
+              "type": "boolean"
+            },
+            "update_off_chain_balances_metadata_timeline": {
+              "type": "boolean"
+            },
+            "update_standards_timeline": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
     }
-  ]
+  ],
+  "definitions": {
+    "ActionPermission": {
+      "type": "object",
+      "required": [
+        "forbidden_times",
+        "permitted_times"
+      ],
+      "properties": {
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "AddressMapping": {
+      "type": "object",
+      "required": [
+        "addresses",
+        "custom_data",
+        "include_addresses",
+        "mapping_id",
+        "uri"
+      ],
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "custom_data": {
+          "type": "string"
+        },
+        "include_addresses": {
+          "type": "boolean"
+        },
+        "mapping_id": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "ApprovalAmounts": {
+      "type": "object",
+      "required": [
+        "overall_approval_amount",
+        "per_from_address_approval_amount",
+        "per_initiated_by_address_approval_amount",
+        "per_to_address_approval_amount"
+      ],
+      "properties": {
+        "overall_approval_amount": {
+          "type": "string"
+        },
+        "per_from_address_approval_amount": {
+          "type": "string"
+        },
+        "per_initiated_by_address_approval_amount": {
+          "type": "string"
+        },
+        "per_to_address_approval_amount": {
+          "type": "string"
+        }
+      }
+    },
+    "ApprovalCriteria": {
+      "type": "object",
+      "required": [
+        "approval_amounts",
+        "max_num_transfers",
+        "merkle_challenge",
+        "must_own_badges",
+        "overrides_from_outgoing_approvals",
+        "overrides_to_incoming_approvals",
+        "predetermined_balances",
+        "require_from_does_not_equal_initiated_by",
+        "require_from_equals_initiated_by",
+        "require_to_does_not_equal_initiated_by",
+        "require_to_equals_initiated_by"
+      ],
+      "properties": {
+        "approval_amounts": {
+          "$ref": "#/definitions/ApprovalAmounts"
+        },
+        "max_num_transfers": {
+          "$ref": "#/definitions/MaxNumTransfers"
+        },
+        "merkle_challenge": {
+          "$ref": "#/definitions/MerkleChallenge"
+        },
+        "must_own_badges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MustOwnBadges"
+          }
+        },
+        "overrides_from_outgoing_approvals": {
+          "type": "boolean"
+        },
+        "overrides_to_incoming_approvals": {
+          "type": "boolean"
+        },
+        "predetermined_balances": {
+          "$ref": "#/definitions/PredeterminedBalances"
+        },
+        "require_from_does_not_equal_initiated_by": {
+          "type": "boolean"
+        },
+        "require_from_equals_initiated_by": {
+          "type": "boolean"
+        },
+        "require_to_does_not_equal_initiated_by": {
+          "type": "boolean"
+        },
+        "require_to_equals_initiated_by": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ApprovalIdentifierDetails": {
+      "type": "object",
+      "required": [
+        "approval_id",
+        "approval_level",
+        "approver_address"
+      ],
+      "properties": {
+        "approval_id": {
+          "type": "string"
+        },
+        "approval_level": {
+          "type": "string"
+        },
+        "approver_address": {
+          "type": "string"
+        }
+      }
+    },
+    "BadgeMetadata": {
+      "type": "object",
+      "required": [
+        "badge_ids",
+        "custom_data",
+        "uri"
+      ],
+      "properties": {
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "custom_data": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "BadgeMetadataTimeline": {
+      "type": "object",
+      "required": [
+        "badge_metadata",
+        "timeline_times"
+      ],
+      "properties": {
+        "badge_metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BadgeMetadata"
+          }
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "Balance": {
+      "type": "object",
+      "required": [
+        "amount",
+        "badge_ids",
+        "ownership_times"
+      ],
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "BalancesActionPermission": {
+      "type": "object",
+      "required": [
+        "badge_ids",
+        "forbidden_times",
+        "ownership_times",
+        "permitted_times"
+      ],
+      "properties": {
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "CollectionApproval": {
+      "type": "object",
+      "required": [
+        "amount_tracker_id",
+        "approval_criteria",
+        "approval_id",
+        "badge_ids",
+        "challenge_tracker_id",
+        "custom_data",
+        "from_mapping_id",
+        "initiated_by_mapping_id",
+        "ownership_times",
+        "to_mapping_id",
+        "transfer_times",
+        "uri"
+      ],
+      "properties": {
+        "amount_tracker_id": {
+          "type": "string"
+        },
+        "approval_criteria": {
+          "$ref": "#/definitions/ApprovalCriteria"
+        },
+        "approval_id": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "challenge_tracker_id": {
+          "type": "string"
+        },
+        "custom_data": {
+          "type": "string"
+        },
+        "from_mapping_id": {
+          "type": "string"
+        },
+        "initiated_by_mapping_id": {
+          "type": "string"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "to_mapping_id": {
+          "type": "string"
+        },
+        "transfer_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "CollectionApprovalPermission": {
+      "type": "object",
+      "required": [
+        "amount_tracker_id",
+        "badge_ids",
+        "challenge_tracker_id",
+        "forbidden_times",
+        "from_mapping_id",
+        "initiated_by_mapping_id",
+        "ownership_times",
+        "permitted_times",
+        "to_mapping_id",
+        "transfer_times"
+      ],
+      "properties": {
+        "amount_tracker_id": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "challenge_tracker_id": {
+          "type": "string"
+        },
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "from_mapping_id": {
+          "type": "string"
+        },
+        "initiated_by_mapping_id": {
+          "type": "string"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "to_mapping_id": {
+          "type": "string"
+        },
+        "transfer_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "CollectionMetadata": {
+      "type": "object",
+      "required": [
+        "custom_data",
+        "uri"
+      ],
+      "properties": {
+        "custom_data": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "CollectionMetadataTimeline": {
+      "type": "object",
+      "required": [
+        "collection_metadata",
+        "timeline_times"
+      ],
+      "properties": {
+        "collection_metadata": {
+          "$ref": "#/definitions/CollectionMetadata"
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "CollectionPermissions": {
+      "type": "object",
+      "required": [
+        "can_archive_collection",
+        "can_create_more_badges",
+        "can_delete_collection",
+        "can_update_badge_metadata",
+        "can_update_collection_approvals",
+        "can_update_collection_metadata",
+        "can_update_custom_data",
+        "can_update_manager",
+        "can_update_off_chain_balances_metadata",
+        "can_update_standards"
+      ],
+      "properties": {
+        "can_archive_collection": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        },
+        "can_create_more_badges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BalancesActionPermission"
+          }
+        },
+        "can_delete_collection": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActionPermission"
+          }
+        },
+        "can_update_badge_metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdateWithBadgeIdsPermission"
+          }
+        },
+        "can_update_collection_approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CollectionApprovalPermission"
+          }
+        },
+        "can_update_collection_metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        },
+        "can_update_custom_data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        },
+        "can_update_manager": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        },
+        "can_update_off_chain_balances_metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        },
+        "can_update_standards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        }
+      }
+    },
+    "CustomDataTimeline": {
+      "type": "object",
+      "required": [
+        "custom_data",
+        "timeline_times"
+      ],
+      "properties": {
+        "custom_data": {
+          "type": "string"
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "IncomingApprovalCriteria": {
+      "type": "object",
+      "required": [
+        "approval_amounts",
+        "max_num_transfers",
+        "merkle_challenge",
+        "must_own_badges",
+        "predetermined_balances",
+        "require_from_does_not_equal_initiated_by",
+        "require_from_equals_initiated_by"
+      ],
+      "properties": {
+        "approval_amounts": {
+          "$ref": "#/definitions/ApprovalAmounts"
+        },
+        "max_num_transfers": {
+          "$ref": "#/definitions/MaxNumTransfers"
+        },
+        "merkle_challenge": {
+          "$ref": "#/definitions/MerkleChallenge"
+        },
+        "must_own_badges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MustOwnBadges"
+          }
+        },
+        "predetermined_balances": {
+          "$ref": "#/definitions/PredeterminedBalances"
+        },
+        "require_from_does_not_equal_initiated_by": {
+          "type": "boolean"
+        },
+        "require_from_equals_initiated_by": {
+          "type": "boolean"
+        }
+      }
+    },
+    "IncrementedBalances": {
+      "type": "object",
+      "required": [
+        "increment_badge_ids_by",
+        "increment_ownership_times_by",
+        "start_balances"
+      ],
+      "properties": {
+        "increment_badge_ids_by": {
+          "type": "string"
+        },
+        "increment_ownership_times_by": {
+          "type": "string"
+        },
+        "start_balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Balance"
+          }
+        }
+      }
+    },
+    "IsArchivedTimeline": {
+      "type": "object",
+      "required": [
+        "is_archived",
+        "timeline_times"
+      ],
+      "properties": {
+        "is_archived": {
+          "type": "boolean"
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "ManagerTimeline": {
+      "type": "object",
+      "required": [
+        "manager",
+        "timeline_times"
+      ],
+      "properties": {
+        "manager": {
+          "type": "string"
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "ManualBalances": {
+      "type": "object",
+      "required": [
+        "balances"
+      ],
+      "properties": {
+        "balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Balance"
+          }
+        }
+      }
+    },
+    "MaxNumTransfers": {
+      "type": "object",
+      "required": [
+        "overall_max_num_transfers",
+        "per_from_address_max_num_transfers",
+        "per_initiated_by_address_max_num_transfers",
+        "per_to_address_max_num_transfers"
+      ],
+      "properties": {
+        "overall_max_num_transfers": {
+          "type": "string"
+        },
+        "per_from_address_max_num_transfers": {
+          "type": "string"
+        },
+        "per_initiated_by_address_max_num_transfers": {
+          "type": "string"
+        },
+        "per_to_address_max_num_transfers": {
+          "type": "string"
+        }
+      }
+    },
+    "MerkleChallenge": {
+      "type": "object",
+      "required": [
+        "custom_data",
+        "expected_proof_length",
+        "max_uses_per_leaf",
+        "root",
+        "uri",
+        "use_creator_address_as_leaf"
+      ],
+      "properties": {
+        "custom_data": {
+          "type": "string"
+        },
+        "expected_proof_length": {
+          "type": "string"
+        },
+        "max_uses_per_leaf": {
+          "type": "string"
+        },
+        "root": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "use_creator_address_as_leaf": {
+          "type": "boolean"
+        }
+      }
+    },
+    "MerklePathItem": {
+      "type": "object",
+      "required": [
+        "aunt",
+        "on_right"
+      ],
+      "properties": {
+        "aunt": {
+          "type": "string"
+        },
+        "on_right": {
+          "type": "boolean"
+        }
+      }
+    },
+    "MerkleProof": {
+      "type": "object",
+      "required": [
+        "aunts",
+        "leaf"
+      ],
+      "properties": {
+        "aunts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MerklePathItem"
+          }
+        },
+        "leaf": {
+          "type": "string"
+        }
+      }
+    },
+    "MustOwnBadges": {
+      "type": "object",
+      "required": [
+        "amount_range",
+        "badge_ids",
+        "collection_id",
+        "must_own_all",
+        "override_with_current_time",
+        "ownership_times"
+      ],
+      "properties": {
+        "amount_range": {
+          "$ref": "#/definitions/UintRange"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "collection_id": {
+          "type": "string"
+        },
+        "must_own_all": {
+          "type": "boolean"
+        },
+        "override_with_current_time": {
+          "type": "boolean"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "OffChainBalancesMetadata": {
+      "type": "object",
+      "required": [
+        "custom_data",
+        "uri"
+      ],
+      "properties": {
+        "custom_data": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "OffChainBalancesMetadataTimeline": {
+      "type": "object",
+      "required": [
+        "off_chain_balances_metadata",
+        "timeline_times"
+      ],
+      "properties": {
+        "off_chain_balances_metadata": {
+          "$ref": "#/definitions/OffChainBalancesMetadata"
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "OutgoingApprovalCriteria": {
+      "type": "object",
+      "required": [
+        "approval_amounts",
+        "max_num_transfers",
+        "merkle_challenge",
+        "must_own_badges",
+        "predetermined_balances",
+        "require_to_does_not_equal_initiated_by",
+        "require_to_equals_initiated_by"
+      ],
+      "properties": {
+        "approval_amounts": {
+          "$ref": "#/definitions/ApprovalAmounts"
+        },
+        "max_num_transfers": {
+          "$ref": "#/definitions/MaxNumTransfers"
+        },
+        "merkle_challenge": {
+          "$ref": "#/definitions/MerkleChallenge"
+        },
+        "must_own_badges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MustOwnBadges"
+          }
+        },
+        "predetermined_balances": {
+          "$ref": "#/definitions/PredeterminedBalances"
+        },
+        "require_to_does_not_equal_initiated_by": {
+          "type": "boolean"
+        },
+        "require_to_equals_initiated_by": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PredeterminedBalances": {
+      "type": "object",
+      "required": [
+        "incremented_balances",
+        "manual_balances",
+        "order_calculation_method"
+      ],
+      "properties": {
+        "incremented_balances": {
+          "$ref": "#/definitions/IncrementedBalances"
+        },
+        "manual_balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ManualBalances"
+          }
+        },
+        "order_calculation_method": {
+          "$ref": "#/definitions/PredeterminedOrderCalculationMethod"
+        }
+      }
+    },
+    "PredeterminedOrderCalculationMethod": {
+      "type": "object",
+      "required": [
+        "use_merkle_challenge_leaf_index",
+        "use_overall_num_transfers",
+        "use_per_from_address_num_transfers",
+        "use_per_initiated_by_address_num_transfers",
+        "use_per_to_address_num_transfers"
+      ],
+      "properties": {
+        "use_merkle_challenge_leaf_index": {
+          "type": "boolean"
+        },
+        "use_overall_num_transfers": {
+          "type": "boolean"
+        },
+        "use_per_from_address_num_transfers": {
+          "type": "boolean"
+        },
+        "use_per_initiated_by_address_num_transfers": {
+          "type": "boolean"
+        },
+        "use_per_to_address_num_transfers": {
+          "type": "boolean"
+        }
+      }
+    },
+    "StandardsTimeline": {
+      "type": "object",
+      "required": [
+        "standards",
+        "timeline_times"
+      ],
+      "properties": {
+        "standards": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "TimedUpdatePermission": {
+      "type": "object",
+      "required": [
+        "forbidden_times",
+        "permitted_times",
+        "timeline_times"
+      ],
+      "properties": {
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "TimedUpdateWithBadgeIdsPermission": {
+      "type": "object",
+      "required": [
+        "badge_ids",
+        "forbidden_times",
+        "permitted_times",
+        "timeline_times"
+      ],
+      "properties": {
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "timeline_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "Transfer": {
+      "type": "object",
+      "required": [
+        "balances",
+        "from",
+        "memo",
+        "merkle_proofs",
+        "only_check_prioritized_approvals",
+        "prioritized_approvals",
+        "to_addresses"
+      ],
+      "properties": {
+        "balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Balance"
+          }
+        },
+        "from": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "string"
+        },
+        "merkle_proofs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MerkleProof"
+          }
+        },
+        "only_check_prioritized_approvals": {
+          "type": "boolean"
+        },
+        "precalculate_balances_from_approval": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ApprovalIdentifierDetails"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prioritized_approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ApprovalIdentifierDetails"
+          }
+        },
+        "to_addresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UintRange": {
+      "type": "object",
+      "required": [
+        "end",
+        "start"
+      ],
+      "properties": {
+        "end": {
+          "type": "string"
+        },
+        "start": {
+          "type": "string"
+        }
+      }
+    },
+    "UserIncomingApproval": {
+      "type": "object",
+      "required": [
+        "amount_tracker_id",
+        "approval_criteria",
+        "approval_id",
+        "badge_ids",
+        "challenge_tracker_id",
+        "custom_data",
+        "from_mapping_id",
+        "initiated_by_mapping_id",
+        "ownership_times",
+        "transfer_times",
+        "uri"
+      ],
+      "properties": {
+        "amount_tracker_id": {
+          "type": "string"
+        },
+        "approval_criteria": {
+          "$ref": "#/definitions/IncomingApprovalCriteria"
+        },
+        "approval_id": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "challenge_tracker_id": {
+          "type": "string"
+        },
+        "custom_data": {
+          "type": "string"
+        },
+        "from_mapping_id": {
+          "type": "string"
+        },
+        "initiated_by_mapping_id": {
+          "type": "string"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "transfer_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "UserIncomingApprovalPermission": {
+      "type": "object",
+      "required": [
+        "amount_tracker_id",
+        "badge_ids",
+        "challenge_tracker_id",
+        "forbidden_times",
+        "from_mapping_id",
+        "initiated_by_mapping_id",
+        "ownership_times",
+        "permitted_times",
+        "transfer_times"
+      ],
+      "properties": {
+        "amount_tracker_id": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "challenge_tracker_id": {
+          "type": "string"
+        },
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "from_mapping_id": {
+          "type": "string"
+        },
+        "initiated_by_mapping_id": {
+          "type": "string"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "transfer_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "UserOutgoingApproval": {
+      "type": "object",
+      "required": [
+        "amount_tracker_id",
+        "approval_criteria",
+        "approval_id",
+        "badge_ids",
+        "challenge_tracker_id",
+        "custom_data",
+        "initiated_by_mapping_id",
+        "ownership_times",
+        "to_mapping_id",
+        "transfer_times",
+        "uri"
+      ],
+      "properties": {
+        "amount_tracker_id": {
+          "type": "string"
+        },
+        "approval_criteria": {
+          "$ref": "#/definitions/OutgoingApprovalCriteria"
+        },
+        "approval_id": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "challenge_tracker_id": {
+          "type": "string"
+        },
+        "custom_data": {
+          "type": "string"
+        },
+        "initiated_by_mapping_id": {
+          "type": "string"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "to_mapping_id": {
+          "type": "string"
+        },
+        "transfer_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "UserOutgoingApprovalPermission": {
+      "type": "object",
+      "required": [
+        "amount_tracker_id",
+        "badge_ids",
+        "challenge_tracker_id",
+        "forbidden_times",
+        "initiated_by_mapping_id",
+        "ownership_times",
+        "permitted_times",
+        "to_mapping_id",
+        "transfer_times"
+      ],
+      "properties": {
+        "amount_tracker_id": {
+          "type": "string"
+        },
+        "badge_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "challenge_tracker_id": {
+          "type": "string"
+        },
+        "forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "initiated_by_mapping_id": {
+          "type": "string"
+        },
+        "ownership_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "to_mapping_id": {
+          "type": "string"
+        },
+        "transfer_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
+    "UserPermissions": {
+      "type": "object",
+      "required": [
+        "can_update_auto_approve_self_initiated_incoming_transfers",
+        "can_update_auto_approve_self_initiated_outgoing_transfers",
+        "can_update_incoming_approvals",
+        "can_update_outgoing_approvals"
+      ],
+      "properties": {
+        "can_update_auto_approve_self_initiated_incoming_transfers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActionPermission"
+          }
+        },
+        "can_update_auto_approve_self_initiated_outgoing_transfers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActionPermission"
+          }
+        },
+        "can_update_incoming_approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserIncomingApprovalPermission"
+          }
+        },
+        "can_update_outgoing_approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserOutgoingApprovalPermission"
+          }
+        }
+      }
+    }
+  }
 }
