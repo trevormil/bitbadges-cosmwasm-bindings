@@ -9,14 +9,14 @@
 bitbadges-cosmwasm = { version = "X.X.X" }
 ```
 
- # Exposed bindings
- This crate, as of now, exports binding only for the x/badges module. In the future, more custom binding will be added.
+# Exposed bindings
+This crate, as of now, exports binding only for the x/badges module. In the future, more custom bindings will be added.
 
 ## Creating Messages
 ​
 **NOTE:** The BitBadges bindings do not cover messages that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`.
 ​
-You may want your contract to perform messages such as `MintBadge` and `RegisterAddresses` operations at the end of its execution. To do this, create a message using the predefined functions:
+You may want your contract to perform messages such as `DeleteCollection` and `TransferBadges` operations at the end of its execution. To do this, create a message using the predefined functions:
 ​
 - `create_register_addresses_msg`
 - ...
@@ -29,13 +29,14 @@ use bitbadges_cosmwasm::{create_register_addresses_msg};
 ​
 ...
 ​
-pub fn execute_msg_register_addresses(
-    _deps: DepsMut<BitBadgesQuery>,
-    _env: Env,
-    _info: MessageInfo,
-    addresses_to_register: Vec<String>,
+pub fn execute_msg_transfer_badges(
+    collection_id: String,
+    transfers: Vec<Transfer>,
 ) -> StdResult<Response<BitBadgesMsg>> {
-    let msg = create_register_addresses_msg(addresses_to_register);
+    let msg = transfer_badges_msg(
+        collection_id,
+        transfers,
+    );
 
     Ok(Response::new().add_message(msg))
 }
@@ -50,9 +51,9 @@ In order to use the query functions enabled by the bindings, create a `BitBadges
 use bitbadges_cosmwasm::{ BitBadgesQuerier };
 ​
 ...
-​pub fn query_collection(deps: Deps, id: u64) -> StdResult<BadgeCollection> {
+​pub fn query_collection(deps: Deps, collection_id: String) -> StdResult<BadgeCollection> {
     let querier = BitBadgesQuerier::new(&deps.querier);
-    let res: BadgeCollection = querier.query_collection(id)?;
+    let res: BadgeCollection = querier.query_collection(collection_id)?;
 
     Ok(res)
 }
@@ -82,9 +83,12 @@ echo $TESTER
 
 # NOTE: we convert to camelCase which should be used here
 msgDetails='{
-    "registerAddressesMsg": {
-        "addressesToRegister": [
-            "cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"
+    "transferBadgesMsg": {
+        "collectionId": "test",
+        "transfers": [
+            {
+              ....
+            }
         ]
     }
 }'
