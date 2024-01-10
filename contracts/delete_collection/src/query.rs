@@ -5,10 +5,6 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "camelCase")]
 pub enum QueryMsg {
     #[serde(rename_all = "camelCase")]
-    QueryAddressById {
-      address: String,
-    },
-    #[serde(rename_all = "camelCase")]
     QueryCollection {
       collection_id: String,
     },
@@ -18,11 +14,11 @@ pub enum QueryMsg {
       address: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryAddressMapping {
-      mapping_id: String,
+    QueryAddressList {
+      list_id: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryApprovalsTracker {
+    QueryApprovalTracker {
       collection_id: String,
       approval_level: String,
       approver_address: String,
@@ -31,7 +27,7 @@ pub enum QueryMsg {
       approved_address: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryNumUsedForMerkleChallenge {
+    QueryChallengeTracker {
       collection_id: String,
       approval_level: String,
       approver_address: String,

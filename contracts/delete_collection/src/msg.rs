@@ -1,6 +1,7 @@
 use bitbadges_cosmwasm::{
-  AddressMapping, Transfer,
-  Balance, CollectionPermissions, ManagerTimeline, CollectionMetadataTimeline, BadgeMetadataTimeline, OffChainBalancesMetadataTimeline, CustomDataTimeline, CollectionApproval, StandardsTimeline, IsArchivedTimeline, UserPermissions, UserOutgoingApproval, UserIncomingApproval
+  AddressList, Transfer,
+  Balance, CollectionPermissions, ManagerTimeline, CollectionMetadataTimeline, BadgeMetadataTimeline, 
+  OffChainBalancesMetadataTimeline, CustomDataTimeline, CollectionApproval, StandardsTimeline, IsArchivedTimeline, UserBalanceStore
 };
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
@@ -18,8 +19,8 @@ pub enum ExecuteMsg {
     },
 
     #[serde(rename_all = "camelCase")]
-    CreateAddressMappingsMsg {
-        address_mappings: Vec<AddressMapping>,
+    CreateAddressListsMsg {
+        address_lists: Vec<AddressList>,
     },
 
     #[serde(rename_all = "camelCase")]
@@ -31,8 +32,7 @@ pub enum ExecuteMsg {
     #[serde(rename_all = "camelCase")]
     CreateCollectionMsg {
       balances_type: String,
-      default_outgoing_approvals: Vec<UserOutgoingApproval>,
-      default_incoming_approvals: Vec<UserIncomingApproval>,
+      default_balances: UserBalanceStore,
       badges_to_create: Vec<Balance>,
       collection_permissions: CollectionPermissions,
       manager_timeline: Vec<ManagerTimeline>,
@@ -43,9 +43,6 @@ pub enum ExecuteMsg {
       collection_approvals: Vec<CollectionApproval>,
       standards_timeline: Vec<StandardsTimeline>,
       is_archived_timeline: Vec<IsArchivedTimeline>,
-      default_auto_approve_self_initiated_outgoing_transfers: bool,
-      default_auto_approve_self_initiated_incoming_transfers: bool,
-      default_user_permissions: UserPermissions,
     },
 
     #[serde(rename_all = "camelCase")]
@@ -76,8 +73,7 @@ pub enum ExecuteMsg {
     UniversalUpdateCollectionMsg {
       collection_id: String,
       balances_type: String,
-      default_outgoing_approvals: Vec<UserOutgoingApproval>,
-      default_incoming_approvals: Vec<UserIncomingApproval>,
+      default_balances: UserBalanceStore,
       badges_to_create: Vec<Balance>,
       update_collection_permissions: bool,
       collection_permissions: CollectionPermissions,
@@ -97,9 +93,6 @@ pub enum ExecuteMsg {
       standards_timeline: Vec<StandardsTimeline>,
       update_is_archived_timeline: bool,
       is_archived_timeline: Vec<IsArchivedTimeline>,
-      default_auto_approve_self_initiated_outgoing_transfers: bool,
-      default_auto_approve_self_initiated_incoming_transfers: bool,
-      default_user_permissions: UserPermissions,
     },
 
     // Add other messages here as needed

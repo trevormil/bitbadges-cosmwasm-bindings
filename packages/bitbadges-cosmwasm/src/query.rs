@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use cosmwasm_std::CustomQuery;
 
-use crate::{ApprovalsTracker, AddressMapping, BadgeCollection, UserBalanceStore};
+use crate::{ApprovalTracker, AddressList, BadgeCollection, UserBalanceStore};
 
 // use crate::msg::{UserBalance, BadgeCollection};
 
@@ -19,20 +19,16 @@ pub enum BitBadgesQuery {
       collection_id: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryAddressById {
-      address: String,
-    },
-    #[serde(rename_all = "camelCase")]
     QueryBalance {
       collection_id: String,
       address: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryAddressMapping {
-      mapping_id: String,
+    QueryAddressList {
+      list_id: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryApprovalsTracker {
+    QueryApprovalTracker {
       collection_id: String,
       approval_level: String,
       approver_address: String,
@@ -41,7 +37,7 @@ pub enum BitBadgesQuery {
       approved_address: String,
     },
     #[serde(rename_all = "camelCase")]
-    QueryNumUsedForMerkleChallenge {
+    QueryChallengeTracker {
       collection_id: String,
       approval_level: String,
       approver_address: String,
@@ -66,17 +62,17 @@ pub struct QueryGetBalanceResponse {
     pub balance: UserBalanceStore,
 }
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct QueryGetAddressMappingResponse {
-    pub mapping: AddressMapping,
+pub struct QueryGetAddressListResponse {
+    pub list: AddressList,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct QueryGetApprovalsTrackerResponse {
-    pub tracker: ApprovalsTracker,
+pub struct QueryGetApprovalTrackerResponse {
+    pub tracker: ApprovalTracker,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct QueryGetNumUsedForMerkleChallengeResponse {
+pub struct QueryChallengeTrackerResponse {
     pub num_used: String, //Uint
 }
 

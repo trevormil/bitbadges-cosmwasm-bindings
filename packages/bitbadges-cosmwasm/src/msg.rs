@@ -15,7 +15,6 @@ impl From<BitBadgesMsg> for CosmosMsg<BitBadgesMsg> {
 }
 
 
-
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub enum BitBadgesMsg {
@@ -24,8 +23,8 @@ pub enum BitBadgesMsg {
       //As a string
       collection_id: String, 
   },
-  CreateAddressMappingsMsg {
-    address_mappings: Vec<AddressMapping>,
+  CreateAddressListsMsg {
+    address_lists: Vec<AddressList>,
   },
   TransferBadgeMsg {
     collection_id: String,
@@ -33,8 +32,7 @@ pub enum BitBadgesMsg {
   },
   CreateCollectionMsg {
     balances_type: String,
-    default_outgoing_approvals: Vec<UserOutgoingApproval>,
-    default_incoming_approvals: Vec<UserIncomingApproval>,
+    default_balances: UserBalanceStore,
     badges_to_create: Vec<Balance>,
     collection_permissions: CollectionPermissions,
     manager_timeline: Vec<ManagerTimeline>,
@@ -44,10 +42,7 @@ pub enum BitBadgesMsg {
     custom_data_timeline: Vec<CustomDataTimeline>,
     collection_approvals: Vec<CollectionApproval>,
     standards_timeline: Vec<StandardsTimeline>,
-    is_archived_timeline: Vec<IsArchivedTimeline>,
-    default_auto_approve_self_initiated_outgoing_transfers: bool,
-    default_auto_approve_self_initiated_incoming_transfers: bool,
-    default_user_permissions: UserPermissions,
+    is_archived_timeline: Vec<IsArchivedTimeline>
   },
   UpdateCollectionMsg {
     collection_id: String,
@@ -74,8 +69,7 @@ pub enum BitBadgesMsg {
   UniversalUpdateCollectionMsg {
     collection_id: String,
     balances_type: String,
-    default_outgoing_approvals: Vec<UserOutgoingApproval>,
-    default_incoming_approvals: Vec<UserIncomingApproval>,
+    default_balances: UserBalanceStore,
     badges_to_create: Vec<Balance>,
     update_collection_permissions: bool,
     collection_permissions: CollectionPermissions,
@@ -94,10 +88,7 @@ pub enum BitBadgesMsg {
     update_standards_timeline: bool,
     standards_timeline: Vec<StandardsTimeline>,
     update_is_archived_timeline: bool,
-    is_archived_timeline: Vec<IsArchivedTimeline>,
-    default_auto_approve_self_initiated_outgoing_transfers: bool,
-    default_auto_approve_self_initiated_incoming_transfers: bool,
-    default_user_permissions: UserPermissions,
+    is_archived_timeline: Vec<IsArchivedTimeline>
   },
 }
 
@@ -107,14 +98,13 @@ pub fn delete_collection_msg(
     BitBadgesMsg::DeleteCollectionMsg {
         collection_id,
     }.into()
-
 }
 
-pub fn address_mappings_msg(
-  address_mappings: Vec<AddressMapping>,
+pub fn address_lists_msg(
+  address_lists: Vec<AddressList>,
 ) -> CosmosMsg<BitBadgesMsg> {
-  BitBadgesMsg::CreateAddressMappingsMsg {
-    address_mappings,
+  BitBadgesMsg::CreateAddressListsMsg {
+    address_lists,
   }.into()
 }
 
@@ -130,8 +120,7 @@ pub fn transfer_badges_msg(
 
 pub fn create_collection_msg(
   balances_type: String,
-  default_outgoing_approvals: Vec<UserOutgoingApproval>,
-  default_incoming_approvals: Vec<UserIncomingApproval>,
+  default_balances: UserBalanceStore,
   badges_to_create: Vec<Balance>,
   collection_permissions: CollectionPermissions,
   manager_timeline: Vec<ManagerTimeline>,
@@ -141,15 +130,11 @@ pub fn create_collection_msg(
   custom_data_timeline: Vec<CustomDataTimeline>,
   collection_approvals: Vec<CollectionApproval>,
   standards_timeline: Vec<StandardsTimeline>,
-  is_archived_timeline: Vec<IsArchivedTimeline>,
-  default_auto_approve_self_initiated_outgoing_transfers: bool,
-  default_auto_approve_self_initiated_incoming_transfers: bool,
-  default_user_permissions: UserPermissions,
+  is_archived_timeline: Vec<IsArchivedTimeline>
 ) -> CosmosMsg<BitBadgesMsg> {
   BitBadgesMsg::CreateCollectionMsg { 
     balances_type,
-    default_outgoing_approvals,
-    default_incoming_approvals,
+    default_balances: default_balances,
     badges_to_create,
     collection_permissions,
     manager_timeline,
@@ -160,9 +145,6 @@ pub fn create_collection_msg(
     collection_approvals,
     standards_timeline,
     is_archived_timeline,
-    default_auto_approve_self_initiated_outgoing_transfers,
-    default_auto_approve_self_initiated_incoming_transfers,
-    default_user_permissions,
   }.into()
 }
   
@@ -216,8 +198,7 @@ pub fn update_collection_msg(
 pub fn universal_update_collection_msg(
   collection_id: String,
   balances_type: String,
-  default_outgoing_approvals: Vec<UserOutgoingApproval>,
-  default_incoming_approvals: Vec<UserIncomingApproval>,
+  default_balances: UserBalanceStore,
   badges_to_create: Vec<Balance>,
   update_collection_permissions: bool,
   collection_permissions: CollectionPermissions,
@@ -236,16 +217,12 @@ pub fn universal_update_collection_msg(
   update_standards_timeline: bool,
   standards_timeline: Vec<StandardsTimeline>,
   update_is_archived_timeline: bool,
-  is_archived_timeline: Vec<IsArchivedTimeline>,
-  default_auto_approve_self_initiated_outgoing_transfers: bool,
-  default_auto_approve_self_initiated_incoming_transfers: bool,
-  default_user_permissions: UserPermissions,
+  is_archived_timeline: Vec<IsArchivedTimeline>
 ) -> CosmosMsg<BitBadgesMsg> {
   BitBadgesMsg::UniversalUpdateCollectionMsg {
       collection_id,
       balances_type,
-      default_outgoing_approvals,
-      default_incoming_approvals,
+      default_balances: default_balances,
       badges_to_create,
       update_collection_permissions,
       collection_permissions,
@@ -264,10 +241,7 @@ pub fn universal_update_collection_msg(
       update_standards_timeline,
       standards_timeline,
       update_is_archived_timeline,
-      is_archived_timeline,
-      default_auto_approve_self_initiated_outgoing_transfers,
-      default_auto_approve_self_initiated_incoming_transfers,
-      default_user_permissions,
+      is_archived_timeline
   }
   .into()
 }
@@ -276,13 +250,14 @@ pub fn universal_update_collection_msg(
 
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct AddressMapping {
-    pub mapping_id: String,
+pub struct AddressList {
+    pub list_id: String,
     pub addresses: Vec<String>,
-    pub include_addresses: bool,
+    pub allowlist: bool,
     pub uri: String,
     pub custom_data: String,
     pub created_by: Option<String>,
+    pub alias_address: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -451,7 +426,7 @@ pub struct MaxNumTransfers {
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct ApprovalsTracker {
+pub struct ApprovalTracker {
     pub num_transfers: String,
     pub amounts: Vec<Balance>,
 }
@@ -505,8 +480,8 @@ pub struct MerkleChallenge {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct UserOutgoingApproval {
-    pub to_mapping_id: String,
-    pub initiated_by_mapping_id: String,
+    pub to_list_id: String,
+    pub initiated_by_list_id: String,
     pub transfer_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
@@ -520,8 +495,8 @@ pub struct UserOutgoingApproval {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct UserIncomingApproval {
-    pub from_mapping_id: String,
-    pub initiated_by_mapping_id: String,
+    pub from_list_id: String,
+    pub initiated_by_list_id: String,
     pub transfer_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
@@ -535,9 +510,9 @@ pub struct UserIncomingApproval {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct CollectionApproval {
-    pub from_mapping_id: String,
-    pub to_mapping_id: String,
-    pub initiated_by_mapping_id: String,
+    pub from_list_id: String,
+    pub to_list_id: String,
+    pub initiated_by_list_id: String,
     pub transfer_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
@@ -573,70 +548,70 @@ pub struct UserPermissions {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct CollectionApprovalPermission {
-    pub from_mapping_id: String,
-    pub to_mapping_id: String,
-    pub initiated_by_mapping_id: String,
+    pub from_list_id: String,
+    pub to_list_id: String,
+    pub initiated_by_list_id: String,
     pub transfer_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
     pub amount_tracker_id: String,
     pub challenge_tracker_id: String,
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct UserOutgoingApprovalPermission {
-    pub to_mapping_id: String,
-    pub initiated_by_mapping_id: String,
+    pub to_list_id: String,
+    pub initiated_by_list_id: String,
     pub transfer_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
     pub amount_tracker_id: String,
     pub challenge_tracker_id: String,
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct UserIncomingApprovalPermission {
-    pub from_mapping_id: String,
-    pub initiated_by_mapping_id: String,
+    pub from_list_id: String,
+    pub initiated_by_list_id: String,
     pub transfer_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
     pub amount_tracker_id: String,
     pub challenge_tracker_id: String,
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct BalancesActionPermission {
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ActionPermission {
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct TimedUpdatePermission {
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
     pub timeline_times: Vec<UintRange>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct TimedUpdateWithBadgeIdsPermission {
     pub badge_ids: Vec<UintRange>,
-    pub permitted_times: Vec<UintRange>,
-    pub forbidden_times: Vec<UintRange>,
+    pub permanently_permitted_times: Vec<UintRange>,
+    pub permanenty_forbidden_times: Vec<UintRange>,
     pub timeline_times: Vec<UintRange>,
 }
 
@@ -663,10 +638,7 @@ pub struct BadgeCollection {
   collection_approvals: Vec<CollectionApproval>,
   standards_timeline: Vec<StandardsTimeline>,
   is_archived_timeline: Vec<IsArchivedTimeline>,
-  default_outgoing_approvals: Vec<UserOutgoingApproval>,
-  default_incoming_approvals: Vec<UserIncomingApproval>,
-  default_auto_approve_self_initiated_outgoing_transfers: bool,
-  default_auto_approve_self_initiated_incoming_transfers: bool,
-  default_user_permissions: UserPermissions,
+  default_balances: UserBalanceStore,
   created_by: String,
+  alias_address: String,
 }

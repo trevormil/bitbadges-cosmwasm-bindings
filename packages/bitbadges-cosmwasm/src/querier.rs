@@ -1,6 +1,5 @@
 use cosmwasm_std::{QuerierWrapper, StdResult};
 use crate::query::BitBadgesQuery;
-// msg::{BadgeCollection, Balance}};
 
 pub struct BitBadgesQuerier<'a> {
     querier: &'a QuerierWrapper<'a, BitBadgesQuery>,
@@ -11,14 +10,6 @@ impl<'a> BitBadgesQuerier<'a> {
         BitBadgesQuerier { querier }
     }
 
-    pub fn query_address_by_id<T: Into<String>>(&self, address: String) -> StdResult<String> {
-        let request = BitBadgesQuery::QueryAddressById { 
-            address
-        }
-        .into();
-
-        self.querier.query(&request)
-    }
     pub fn query_collection<T: Into<String>>(&self, collection_id: String) -> StdResult<String> {
         let request = BitBadgesQuery::QueryCollection { 
             collection_id
@@ -38,9 +29,9 @@ impl<'a> BitBadgesQuerier<'a> {
         self.querier.query(&request)
     }
 
-    pub fn query_address_mapping<T: Into<String>>(&self, mapping_id: String) -> StdResult<String> {
-        let request = BitBadgesQuery::QueryAddressMapping { 
-            mapping_id
+    pub fn query_address_list<T: Into<String>>(&self, list_id: String) -> StdResult<String> {
+        let request = BitBadgesQuery::QueryAddressList { 
+            list_id
         }
         .into();
 
@@ -48,7 +39,7 @@ impl<'a> BitBadgesQuerier<'a> {
     }
 
     pub fn query_approvals_tracker<T: Into<String>>(&self, collection_id: String, approval_level: String, approver_address: String, amount_tracker_id: String, tracker_type: String, approved_address: String) -> StdResult<String> {
-        let request = BitBadgesQuery::QueryApprovalsTracker { 
+        let request = BitBadgesQuery::QueryApprovalTracker { 
             collection_id,
             approval_level,
             approver_address,
@@ -62,7 +53,7 @@ impl<'a> BitBadgesQuerier<'a> {
     }
 
     pub fn query_num_used_for_merkle_challenge<T: Into<String>>(&self, collection_id: String, approval_level: String, approver_address: String, challenge_tracker_id: String, leaf_index: String) -> StdResult<String> {
-        let request = BitBadgesQuery::QueryNumUsedForMerkleChallenge { 
+        let request = BitBadgesQuery::QueryChallengeTracker { 
             collection_id,
             approval_level,
             approver_address,

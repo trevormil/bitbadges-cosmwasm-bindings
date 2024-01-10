@@ -25,19 +25,19 @@
     {
       "type": "object",
       "required": [
-        "createAddressMappingsMsg"
+        "createAddressListsMsg"
       ],
       "properties": {
-        "createAddressMappingsMsg": {
+        "createAddressListsMsg": {
           "type": "object",
           "required": [
-            "address_mappings"
+            "address_lists"
           ],
           "properties": {
-            "address_mappings": {
+            "address_lists": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/AddressMapping"
+                "$ref": "#/definitions/AddressList"
               }
             }
           }
@@ -90,8 +90,7 @@
             "custom_data_timeline",
             "default_auto_approve_self_initiated_incoming_transfers",
             "default_auto_approve_self_initiated_outgoing_transfers",
-            "default_incoming_approvals",
-            "default_outgoing_approvals",
+            "default_balances",
             "default_user_permissions",
             "is_archived_timeline",
             "manager_timeline",
@@ -141,17 +140,8 @@
             "default_auto_approve_self_initiated_outgoing_transfers": {
               "type": "boolean"
             },
-            "default_incoming_approvals": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/UserIncomingApproval"
-              }
-            },
-            "default_outgoing_approvals": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/UserOutgoingApproval"
-              }
+            "default_balances": {
+              "$ref": "#/definitions/UserBalanceStore"
             },
             "default_user_permissions": {
               "$ref": "#/definitions/UserPermissions"
@@ -327,8 +317,7 @@
             "custom_data_timeline",
             "default_auto_approve_self_initiated_incoming_transfers",
             "default_auto_approve_self_initiated_outgoing_transfers",
-            "default_incoming_approvals",
-            "default_outgoing_approvals",
+            "default_balances",
             "default_user_permissions",
             "is_archived_timeline",
             "manager_timeline",
@@ -390,17 +379,8 @@
             "default_auto_approve_self_initiated_outgoing_transfers": {
               "type": "boolean"
             },
-            "default_incoming_approvals": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/UserIncomingApproval"
-              }
-            },
-            "default_outgoing_approvals": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/UserOutgoingApproval"
-              }
+            "default_balances": {
+              "$ref": "#/definitions/UserBalanceStore"
             },
             "default_user_permissions": {
               "$ref": "#/definitions/UserPermissions"
@@ -466,17 +446,17 @@
     "ActionPermission": {
       "type": "object",
       "required": [
-        "forbidden_times",
-        "permitted_times"
+        "permanently_permitted_times",
+        "permanenty_forbidden_times"
       ],
       "properties": {
-        "forbidden_times": {
+        "permanently_permitted_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanenty_forbidden_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -484,13 +464,13 @@
         }
       }
     },
-    "AddressMapping": {
+    "AddressList": {
       "type": "object",
       "required": [
         "addresses",
+        "allowlist",
         "custom_data",
-        "include_addresses",
-        "mapping_id",
+        "list_id",
         "uri"
       ],
       "properties": {
@@ -499,6 +479,15 @@
           "items": {
             "type": "string"
           }
+        },
+        "alias_address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "allowlist": {
+          "type": "boolean"
         },
         "created_by": {
           "type": [
@@ -509,10 +498,7 @@
         "custom_data": {
           "type": "string"
         },
-        "include_addresses": {
-          "type": "boolean"
-        },
-        "mapping_id": {
+        "list_id": {
           "type": "string"
         },
         "uri": {
@@ -688,18 +674,12 @@
       "type": "object",
       "required": [
         "badge_ids",
-        "forbidden_times",
         "ownership_times",
-        "permitted_times"
+        "permanently_permitted_times",
+        "permanenty_forbidden_times"
       ],
       "properties": {
         "badge_ids": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "forbidden_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -711,7 +691,13 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanently_permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permanenty_forbidden_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -728,10 +714,10 @@
         "badge_ids",
         "challenge_tracker_id",
         "custom_data",
-        "from_mapping_id",
-        "initiated_by_mapping_id",
+        "from_list_id",
+        "initiated_by_list_id",
         "ownership_times",
-        "to_mapping_id",
+        "to_list_id",
         "transfer_times",
         "uri"
       ],
@@ -757,10 +743,10 @@
         "custom_data": {
           "type": "string"
         },
-        "from_mapping_id": {
+        "from_list_id": {
           "type": "string"
         },
-        "initiated_by_mapping_id": {
+        "initiated_by_list_id": {
           "type": "string"
         },
         "ownership_times": {
@@ -769,7 +755,7 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "to_mapping_id": {
+        "to_list_id": {
           "type": "string"
         },
         "transfer_times": {
@@ -789,12 +775,12 @@
         "amount_tracker_id",
         "badge_ids",
         "challenge_tracker_id",
-        "forbidden_times",
-        "from_mapping_id",
-        "initiated_by_mapping_id",
+        "from_list_id",
+        "initiated_by_list_id",
         "ownership_times",
-        "permitted_times",
-        "to_mapping_id",
+        "permanently_permitted_times",
+        "permanenty_forbidden_times",
+        "to_list_id",
         "transfer_times"
       ],
       "properties": {
@@ -810,16 +796,10 @@
         "challenge_tracker_id": {
           "type": "string"
         },
-        "forbidden_times": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "from_mapping_id": {
+        "from_list_id": {
           "type": "string"
         },
-        "initiated_by_mapping_id": {
+        "initiated_by_list_id": {
           "type": "string"
         },
         "ownership_times": {
@@ -828,13 +808,19 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanently_permitted_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
         },
-        "to_mapping_id": {
+        "permanenty_forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "to_list_id": {
           "type": "string"
         },
         "transfer_times": {
@@ -1351,18 +1337,18 @@
     "TimedUpdatePermission": {
       "type": "object",
       "required": [
-        "forbidden_times",
-        "permitted_times",
+        "permanently_permitted_times",
+        "permanenty_forbidden_times",
         "timeline_times"
       ],
       "properties": {
-        "forbidden_times": {
+        "permanently_permitted_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanenty_forbidden_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -1380,8 +1366,8 @@
       "type": "object",
       "required": [
         "badge_ids",
-        "forbidden_times",
-        "permitted_times",
+        "permanently_permitted_times",
+        "permanenty_forbidden_times",
         "timeline_times"
       ],
       "properties": {
@@ -1391,13 +1377,13 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "forbidden_times": {
+        "permanently_permitted_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanenty_forbidden_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -1483,6 +1469,46 @@
         }
       }
     },
+    "UserBalanceStore": {
+      "type": "object",
+      "required": [
+        "auto_approve_self_initiated_incoming_transfers",
+        "auto_approve_self_initiated_outgoing_transfers",
+        "balances",
+        "incoming_approvals",
+        "outgoing_approvals",
+        "user_permissions"
+      ],
+      "properties": {
+        "auto_approve_self_initiated_incoming_transfers": {
+          "type": "boolean"
+        },
+        "auto_approve_self_initiated_outgoing_transfers": {
+          "type": "boolean"
+        },
+        "balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Balance"
+          }
+        },
+        "incoming_approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserIncomingApproval"
+          }
+        },
+        "outgoing_approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserOutgoingApproval"
+          }
+        },
+        "user_permissions": {
+          "$ref": "#/definitions/UserPermissions"
+        }
+      }
+    },
     "UserIncomingApproval": {
       "type": "object",
       "required": [
@@ -1492,8 +1518,8 @@
         "badge_ids",
         "challenge_tracker_id",
         "custom_data",
-        "from_mapping_id",
-        "initiated_by_mapping_id",
+        "from_list_id",
+        "initiated_by_list_id",
         "ownership_times",
         "transfer_times",
         "uri"
@@ -1520,10 +1546,10 @@
         "custom_data": {
           "type": "string"
         },
-        "from_mapping_id": {
+        "from_list_id": {
           "type": "string"
         },
-        "initiated_by_mapping_id": {
+        "initiated_by_list_id": {
           "type": "string"
         },
         "ownership_times": {
@@ -1549,11 +1575,11 @@
         "amount_tracker_id",
         "badge_ids",
         "challenge_tracker_id",
-        "forbidden_times",
-        "from_mapping_id",
-        "initiated_by_mapping_id",
+        "from_list_id",
+        "initiated_by_list_id",
         "ownership_times",
-        "permitted_times",
+        "permanently_permitted_times",
+        "permanenty_forbidden_times",
         "transfer_times"
       ],
       "properties": {
@@ -1569,16 +1595,10 @@
         "challenge_tracker_id": {
           "type": "string"
         },
-        "forbidden_times": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "from_mapping_id": {
+        "from_list_id": {
           "type": "string"
         },
-        "initiated_by_mapping_id": {
+        "initiated_by_list_id": {
           "type": "string"
         },
         "ownership_times": {
@@ -1587,7 +1607,13 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanently_permitted_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permanenty_forbidden_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -1610,9 +1636,9 @@
         "badge_ids",
         "challenge_tracker_id",
         "custom_data",
-        "initiated_by_mapping_id",
+        "initiated_by_list_id",
         "ownership_times",
-        "to_mapping_id",
+        "to_list_id",
         "transfer_times",
         "uri"
       ],
@@ -1638,7 +1664,7 @@
         "custom_data": {
           "type": "string"
         },
-        "initiated_by_mapping_id": {
+        "initiated_by_list_id": {
           "type": "string"
         },
         "ownership_times": {
@@ -1647,7 +1673,7 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "to_mapping_id": {
+        "to_list_id": {
           "type": "string"
         },
         "transfer_times": {
@@ -1667,11 +1693,11 @@
         "amount_tracker_id",
         "badge_ids",
         "challenge_tracker_id",
-        "forbidden_times",
-        "initiated_by_mapping_id",
+        "initiated_by_list_id",
         "ownership_times",
-        "permitted_times",
-        "to_mapping_id",
+        "permanently_permitted_times",
+        "permanenty_forbidden_times",
+        "to_list_id",
         "transfer_times"
       ],
       "properties": {
@@ -1687,13 +1713,7 @@
         "challenge_tracker_id": {
           "type": "string"
         },
-        "forbidden_times": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "initiated_by_mapping_id": {
+        "initiated_by_list_id": {
           "type": "string"
         },
         "ownership_times": {
@@ -1702,13 +1722,19 @@
             "$ref": "#/definitions/UintRange"
           }
         },
-        "permitted_times": {
+        "permanently_permitted_times": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
         },
-        "to_mapping_id": {
+        "permanenty_forbidden_times": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "to_list_id": {
           "type": "string"
         },
         "transfer_times": {

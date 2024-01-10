@@ -26,26 +26,6 @@
     {
       "type": "object",
       "required": [
-        "queryAddressById"
-      ],
-      "properties": {
-        "queryAddressById": {
-          "type": "object",
-          "required": [
-            "address"
-          ],
-          "properties": {
-            "address": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
         "queryBalance"
       ],
       "properties": {
@@ -70,16 +50,16 @@
     {
       "type": "object",
       "required": [
-        "queryAddressMapping"
+        "queryAddressList"
       ],
       "properties": {
-        "queryAddressMapping": {
+        "queryAddressList": {
           "type": "object",
           "required": [
-            "mappingId"
+            "listId"
           ],
           "properties": {
-            "mappingId": {
+            "listId": {
               "type": "string"
             }
           }
@@ -90,10 +70,10 @@
     {
       "type": "object",
       "required": [
-        "queryApprovalsTracker"
+        "queryApprovalTracker"
       ],
       "properties": {
-        "queryApprovalsTracker": {
+        "queryApprovalTracker": {
           "type": "object",
           "required": [
             "amountTrackerId",
@@ -130,10 +110,10 @@
     {
       "type": "object",
       "required": [
-        "queryNumUsedForMerkleChallenge"
+        "queryChallengeTracker"
       ],
       "properties": {
-        "queryNumUsedForMerkleChallenge": {
+        "queryChallengeTracker": {
           "type": "object",
           "required": [
             "approvalLevel",

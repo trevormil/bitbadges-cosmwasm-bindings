@@ -18,14 +18,14 @@ This crate, as of now, exports binding only for the x/badges module. In the futu
 ​
 You may want your contract to perform messages such as `DeleteCollection` and `TransferBadges` operations at the end of its execution. To do this, create a message using the predefined functions:
 ​
-- `create_register_addresses_msg`
+- `transfer_badges_msg`
 - ...
 
 And add it to your response, like below
 ​
 ```rust
 use cosmwasm_std::CosmosMsg;
-use bitbadges_cosmwasm::{create_register_addresses_msg};
+use bitbadges_cosmwasm::{transfer_badges_msg};
 ​
 ...
 ​
