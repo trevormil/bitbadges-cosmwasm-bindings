@@ -1,11 +1,8 @@
 [package]
-name = "delete_collection"
+name = "contract_example"
 version = "0.0.1"
-authors = ["Angel Valkov <angel.valkov@limechain.tech>"]
 edition = "2021"
-description = "simple tester for native modules"
-license = "Apache-2.0"
-repository = "https://github.com/CudoVentures/bitbadges-cosmwasm-bindings"
+repository = "https://github.com/bitbadges/bitbadges-cosmwasm-bindings"
 homepage = "https://www.bitbadges.io/"
 documentation = "https://docs.bitbadges.io/"
 readme = "README.md"

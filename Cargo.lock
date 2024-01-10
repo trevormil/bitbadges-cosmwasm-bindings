@@ -84,6 +84,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "28c122c3980598d243d63d9a704629a2d748d101f278052ff068be5a4423ab6f"
 
 [[package]]
+name = "contract_example"
+version = "0.0.1"
+dependencies = [
+ "bitbadges-cosmwasm",
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cosmwasm-storage",
+ "schemars",
+ "serde",
+ "snafu",
+ "thiserror",
+]
+
+[[package]]
 name = "cosmwasm-crypto"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -201,20 +215,6 @@ dependencies = [
  "rand_core 0.5.1",
  "subtle",
  "zeroize",
-]
-
-[[package]]
-name = "delete_collection"
-version = "0.0.1"
-dependencies = [
- "bitbadges-cosmwasm",
- "cosmwasm-schema",
- "cosmwasm-std",
- "cosmwasm-storage",
- "schemars",
- "serde",
- "snafu",
- "thiserror",
 ]
 
 [[package]]

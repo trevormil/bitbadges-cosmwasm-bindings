@@ -35,7 +35,7 @@ pub fn execute(
         ExecuteMsg::CreateAddressListsMsg { address_lists } => {
           execute_msg_create_address_lists(address_lists)
         }
-        ExecuteMsg::TransferBadgeMsg { collection_id, transfers } => {
+        ExecuteMsg::TransferBadgesMsg { collection_id, transfers } => {
           execute_msg_transfer_badges(collection_id, transfers)
         }
         ExecuteMsg::CreateCollectionMsg { balances_type, default_balances, badges_to_create, collection_permissions, manager_timeline, collection_metadata_timeline, badge_metadata_timeline, off_chain_balances_metadata_timeline, custom_data_timeline, collection_approvals, standards_timeline, is_archived_timeline  } => {

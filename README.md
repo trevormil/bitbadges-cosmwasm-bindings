@@ -77,16 +77,8 @@ TESTER=$(bitbadgeschaind query wasm list-contract-by-code $CODE --output json | 
 echo $TESTER
 
 # NOTE: sender field in the queries should be the address of your contract, in this case - $TESTER
-# issueDenom
-# NOTE: schema is optional field
-
-# NOTE: we convert to camelCase which should be used here
 msgDetails='{
-    "registerAddressesMsg": {
-        "addressesToRegister": [
-            "cosmos1jv65s3grqf6v6jl3dp4t6c9t9rk99cd88lyufl"
-        ]
-    }
+    ....
 }'
 bitbadgeschaind tx wasm execute $TESTER $msgDetails --from=<address> --chain-id=<chain-id> --gas=auto -y 
 ```

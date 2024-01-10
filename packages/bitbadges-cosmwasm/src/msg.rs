@@ -23,13 +23,19 @@ pub enum BitBadgesMsg {
       //As a string
       collection_id: String, 
   },
+
+  #[serde(rename_all = "camelCase")]
   CreateAddressListsMsg {
     address_lists: Vec<AddressList>,
   },
-  TransferBadgeMsg {
+
+  #[serde(rename_all = "camelCase")]
+  TransferBadgesMsg {
     collection_id: String,
     transfers: Vec<Transfer>,
   },
+
+  #[serde(rename_all = "camelCase")]
   CreateCollectionMsg {
     balances_type: String,
     default_balances: UserBalanceStore,
@@ -44,6 +50,9 @@ pub enum BitBadgesMsg {
     standards_timeline: Vec<StandardsTimeline>,
     is_archived_timeline: Vec<IsArchivedTimeline>
   },
+
+
+  #[serde(rename_all = "camelCase")]
   UpdateCollectionMsg {
     collection_id: String,
     badges_to_create: Vec<Balance>,
@@ -66,6 +75,8 @@ pub enum BitBadgesMsg {
     update_is_archived_timeline: bool,
     is_archived_timeline: Vec<IsArchivedTimeline>,
   },
+
+  #[serde(rename_all = "camelCase")]
   UniversalUpdateCollectionMsg {
     collection_id: String,
     balances_type: String,
@@ -112,7 +123,7 @@ pub fn transfer_badges_msg(
   collection_id: String,
   transfers: Vec<Transfer>,
 ) -> CosmosMsg<BitBadgesMsg> {
-  BitBadgesMsg::TransferBadgeMsg {
+  BitBadgesMsg::TransferBadgesMsg {
     collection_id,
     transfers,
   }.into()
@@ -249,7 +260,9 @@ pub fn universal_update_collection_msg(
 
 
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct AddressList {
     pub list_id: String,
     pub addresses: Vec<String>,
@@ -260,7 +273,9 @@ pub struct AddressList {
     pub alias_address: Option<String>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct Transfer {
     pub from: String,
     pub to_addresses: Vec<String>,
@@ -272,128 +287,168 @@ pub struct Transfer {
     pub only_check_prioritized_approvals: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct Balance {
     pub amount: String,
     pub ownership_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UintRange {
     pub start: String,
     pub end: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ApprovalIdentifierDetails {
     pub approval_id: String,
     pub approval_level: String,
     pub approver_address: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct MerkleProof {
     pub leaf: String,
     pub aunts: Vec<MerklePathItem>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct MerklePathItem {
     pub aunt: String,
     pub on_right: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct MustOwnBadges {
     pub collection_id: String,
     pub amount_range: UintRange,
     pub ownership_times: Vec<UintRange>,
     pub badge_ids: Vec<UintRange>,
     pub override_with_current_time: bool,
-    pub must_own_all: bool,
+    pub must_satify_for_all_assets: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct BadgeMetadata {
     pub uri: String,
     pub custom_data: String,
     pub badge_ids: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct CollectionMetadata {
     pub uri: String,
     pub custom_data: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct OffChainBalancesMetadata {
     pub uri: String,
     pub custom_data: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct CollectionMetadataTimeline {
     pub collection_metadata: CollectionMetadata,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct BadgeMetadataTimeline {
     pub badge_metadata: Vec<BadgeMetadata>,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct OffChainBalancesMetadataTimeline {
     pub off_chain_balances_metadata: OffChainBalancesMetadata,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct CustomDataTimeline {
     pub custom_data: String,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ManagerTimeline {
     pub manager: String,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct IsArchivedTimeline {
     pub is_archived: bool,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ContractAddressTimeline {
     pub contract_address: String,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct StandardsTimeline {
     pub standards: Vec<String>,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ManualBalances {
     pub balances: Vec<Balance>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct IncrementedBalances {
     pub start_balances: Vec<Balance>,
     pub increment_badge_ids_by: String,
     pub increment_ownership_times_by: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct PredeterminedOrderCalculationMethod {
     pub use_overall_num_transfers: bool,
     pub use_per_to_address_num_transfers: bool,
@@ -402,14 +457,18 @@ pub struct PredeterminedOrderCalculationMethod {
     pub use_merkle_challenge_leaf_index: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct PredeterminedBalances {
     pub manual_balances: Vec<ManualBalances>,
     pub incremented_balances: IncrementedBalances,
     pub order_calculation_method: PredeterminedOrderCalculationMethod,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ApprovalAmounts {
     pub overall_approval_amount: String,
     pub per_to_address_approval_amount: String,
@@ -417,7 +476,9 @@ pub struct ApprovalAmounts {
     pub per_initiated_by_address_approval_amount: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct MaxNumTransfers {
   pub overall_max_num_transfers: String,
   pub per_to_address_max_num_transfers: String,
@@ -425,13 +486,17 @@ pub struct MaxNumTransfers {
   pub per_initiated_by_address_max_num_transfers: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ApprovalTracker {
     pub num_transfers: String,
     pub amounts: Vec<Balance>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ApprovalCriteria {
   must_own_badges: Vec<MustOwnBadges>,
   merkle_challenge: MerkleChallenge,
@@ -446,7 +511,9 @@ pub struct ApprovalCriteria {
   overrides_to_incoming_approvals: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct OutgoingApprovalCriteria {
   must_own_badges: Vec<MustOwnBadges>,
   merkle_challenge: MerkleChallenge,
@@ -457,7 +524,9 @@ pub struct OutgoingApprovalCriteria {
   require_to_does_not_equal_initiated_by: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct IncomingApprovalCriteria {
   must_own_badges: Vec<MustOwnBadges>,
   merkle_challenge: MerkleChallenge,
@@ -468,7 +537,9 @@ pub struct IncomingApprovalCriteria {
   require_from_does_not_equal_initiated_by: bool,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct MerkleChallenge {
     pub root: String,
     pub expected_proof_length: String,
@@ -478,7 +549,9 @@ pub struct MerkleChallenge {
     pub custom_data: String,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UserOutgoingApproval {
     pub to_list_id: String,
     pub initiated_by_list_id: String,
@@ -493,7 +566,9 @@ pub struct UserOutgoingApproval {
     pub approval_criteria: OutgoingApprovalCriteria,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UserIncomingApproval {
     pub from_list_id: String,
     pub initiated_by_list_id: String,
@@ -508,7 +583,9 @@ pub struct UserIncomingApproval {
     pub approval_criteria: IncomingApprovalCriteria,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct CollectionApproval {
     pub from_list_id: String,
     pub to_list_id: String,
@@ -524,7 +601,9 @@ pub struct CollectionApproval {
     pub approval_criteria: ApprovalCriteria,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct CollectionPermissions {
     pub can_delete_collection: Vec<ActionPermission>,
     pub can_archive_collection: Vec<TimedUpdatePermission>,
@@ -538,7 +617,9 @@ pub struct CollectionPermissions {
     pub can_update_collection_approvals: Vec<CollectionApprovalPermission>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UserPermissions {
     pub can_update_outgoing_approvals: Vec<UserOutgoingApprovalPermission>,
     pub can_update_incoming_approvals: Vec<UserIncomingApprovalPermission>,
@@ -546,7 +627,9 @@ pub struct UserPermissions {
     pub can_update_auto_approve_self_initiated_incoming_transfers: Vec<ActionPermission>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct CollectionApprovalPermission {
     pub from_list_id: String,
     pub to_list_id: String,
@@ -560,7 +643,9 @@ pub struct CollectionApprovalPermission {
     pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UserOutgoingApprovalPermission {
     pub to_list_id: String,
     pub initiated_by_list_id: String,
@@ -573,7 +658,9 @@ pub struct UserOutgoingApprovalPermission {
     pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UserIncomingApprovalPermission {
     pub from_list_id: String,
     pub initiated_by_list_id: String,
@@ -586,7 +673,9 @@ pub struct UserIncomingApprovalPermission {
     pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct BalancesActionPermission {
     pub badge_ids: Vec<UintRange>,
     pub ownership_times: Vec<UintRange>,
@@ -594,20 +683,26 @@ pub struct BalancesActionPermission {
     pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct ActionPermission {
     pub permanently_permitted_times: Vec<UintRange>,
     pub permanenty_forbidden_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct TimedUpdatePermission {
     pub permanently_permitted_times: Vec<UintRange>,
     pub permanenty_forbidden_times: Vec<UintRange>,
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct TimedUpdateWithBadgeIdsPermission {
     pub badge_ids: Vec<UintRange>,
     pub permanently_permitted_times: Vec<UintRange>,
@@ -615,7 +710,9 @@ pub struct TimedUpdateWithBadgeIdsPermission {
     pub timeline_times: Vec<UintRange>,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct UserBalanceStore {
     pub balances: Vec<Balance>,
     pub outgoing_approvals: Vec<UserOutgoingApproval>,
@@ -625,7 +722,9 @@ pub struct UserBalanceStore {
     pub user_permissions: UserPermissions,
 }
 
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
 pub struct BadgeCollection {
   collection_id: String,
   collection_metadata_timeline: Vec<CollectionMetadataTimeline>,

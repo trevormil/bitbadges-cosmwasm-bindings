@@ -24,7 +24,7 @@ pub enum ExecuteMsg {
     },
 
     #[serde(rename_all = "camelCase")]
-    TransferBadgeMsg {
+    TransferBadgesMsg {
         collection_id: String,
         transfers: Vec<Transfer>,
     },
