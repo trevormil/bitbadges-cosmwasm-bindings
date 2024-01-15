@@ -376,7 +376,7 @@ pub struct Protocol {
 pub struct AddressList {
     pub list_id: String,
     pub addresses: Vec<String>,
-    pub allowlist: bool,
+    pub whitelist: bool,
     pub uri: String,
     pub custom_data: String,
     pub created_by: Option<String>,

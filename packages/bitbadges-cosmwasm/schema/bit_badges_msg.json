@@ -592,10 +592,10 @@
       "type": "object",
       "required": [
         "addresses",
-        "allowlist",
         "customData",
         "listId",
-        "uri"
+        "uri",
+        "whitelist"
       ],
       "properties": {
         "addresses": {
@@ -609,9 +609,6 @@
             "string",
             "null"
           ]
-        },
-        "allowlist": {
-          "type": "boolean"
         },
         "createdBy": {
           "type": [
@@ -627,6 +624,9 @@
         },
         "uri": {
           "type": "string"
+        },
+        "whitelist": {
+          "type": "boolean"
         }
       }
     },
