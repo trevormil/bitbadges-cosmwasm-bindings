@@ -15,9 +15,48 @@ impl From<BitBadgesMsg> for CosmosMsg<BitBadgesMsg> {
 }
 
 
+
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub enum BitBadgesMsg {
+  #[serde(rename_all = "camelCase")]
+  SetCollectionForProtocolMsg {
+    creator: String,
+    name: String,
+    collection_id: String,
+  },
+
+  #[serde(rename_all = "camelCase")]
+  UnsetCollectionForProtocolMsg {
+    creator: String,
+    name: String,
+  },
+
+  #[serde(rename_all = "camelCase")]
+  CreateProtocolMsg {
+    creator: String,
+    name: String,
+    uri: String,
+    custom_data: String,
+    is_frozen: bool,
+  },
+
+  #[serde(rename_all = "camelCase")]
+  UpdateProtocolMsg {
+    creator: String,
+    name: String,
+    uri: String,
+    custom_data: String,
+    is_frozen: bool,
+  },
+
+  #[serde(rename_all = "camelCase")]
+  DeleteProtocolMsg {
+    creator: String,
+    name: String,
+  },
+
   #[serde(rename_all = "camelCase")]
   DeleteCollectionMsg {
       //As a string
@@ -101,6 +140,70 @@ pub enum BitBadgesMsg {
     update_is_archived_timeline: bool,
     is_archived_timeline: Vec<IsArchivedTimeline>
   },
+}
+
+pub fn set_collection_for_protocol_msg(
+  creator: String,
+  name: String,
+  collection_id: String,
+) -> CosmosMsg<BitBadgesMsg> {
+  BitBadgesMsg::SetCollectionForProtocolMsg {
+    creator,
+    name,
+    collection_id,
+  }.into()
+}
+
+pub fn unset_collection_for_protocol_msg(
+  creator: String,
+  name: String,
+) -> CosmosMsg<BitBadgesMsg> {
+  BitBadgesMsg::UnsetCollectionForProtocolMsg {
+    creator,
+    name,
+  }.into()
+}
+
+pub fn create_protocol_msg(
+  creator: String,
+  name: String,
+  uri: String,
+  custom_data: String,
+  is_frozen: bool,
+) -> CosmosMsg<BitBadgesMsg> {
+  BitBadgesMsg::CreateProtocolMsg {
+    creator,
+    name,
+    uri,
+    custom_data,
+    is_frozen,
+  }.into()
+}
+
+pub fn update_protocol_msg(
+  creator: String,
+  name: String,
+  uri: String,
+  custom_data: String,
+  is_frozen: bool,
+) -> CosmosMsg<BitBadgesMsg> {
+  BitBadgesMsg::UpdateProtocolMsg {
+    creator,
+    name,
+    uri,
+    custom_data,
+    is_frozen,
+  }.into()
+}
+
+pub fn delete_protocol_msg(
+  creator: String,
+  name: String,
+) -> CosmosMsg<BitBadgesMsg> {
+  BitBadgesMsg::DeleteProtocolMsg {
+    creator,
+    name,
+  }.into()
 }
 
 pub fn delete_collection_msg(
@@ -258,8 +361,15 @@ pub fn universal_update_collection_msg(
 }
 
 
-
-
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "camelCase")]
+pub struct Protocol {
+  pub name: String,
+  pub uri: String,
+  pub custom_data: String,
+  pub created_by: String,
+  pub is_frozen: bool,
+}
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]

@@ -5,6 +5,154 @@
     {
       "type": "object",
       "required": [
+        "setCollectionForProtocolMsg"
+      ],
+      "properties": {
+        "setCollectionForProtocolMsg": {
+          "type": "object",
+          "required": [
+            "collectionId",
+            "creator",
+            "name"
+          ],
+          "properties": {
+            "collectionId": {
+              "type": "string"
+            },
+            "creator": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "unsetCollectionForProtocolMsg"
+      ],
+      "properties": {
+        "unsetCollectionForProtocolMsg": {
+          "type": "object",
+          "required": [
+            "creator",
+            "name"
+          ],
+          "properties": {
+            "creator": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "createProtocolMsg"
+      ],
+      "properties": {
+        "createProtocolMsg": {
+          "type": "object",
+          "required": [
+            "creator",
+            "customData",
+            "isFrozen",
+            "name",
+            "uri"
+          ],
+          "properties": {
+            "creator": {
+              "type": "string"
+            },
+            "customData": {
+              "type": "string"
+            },
+            "isFrozen": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string"
+            },
+            "uri": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "updateProtocolMsg"
+      ],
+      "properties": {
+        "updateProtocolMsg": {
+          "type": "object",
+          "required": [
+            "creator",
+            "customData",
+            "isFrozen",
+            "name",
+            "uri"
+          ],
+          "properties": {
+            "creator": {
+              "type": "string"
+            },
+            "customData": {
+              "type": "string"
+            },
+            "isFrozen": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string"
+            },
+            "uri": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "deleteProtocolMsg"
+      ],
+      "properties": {
+        "deleteProtocolMsg": {
+          "type": "object",
+          "required": [
+            "creator",
+            "name"
+          ],
+          "properties": {
+            "creator": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
         "deleteCollectionMsg"
       ],
       "properties": {

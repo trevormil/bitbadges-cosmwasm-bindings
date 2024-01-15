@@ -3,17 +3,29 @@ use serde::{Deserialize, Serialize};
 
 use cosmwasm_std::CustomQuery;
 
-use crate::{ApprovalTracker, AddressList, BadgeCollection, UserBalanceStore};
+use crate::{ApprovalTracker, AddressList, BadgeCollection, UserBalanceStore, Protocol};
 
 // use crate::msg::{UserBalance, BadgeCollection};
 
 // implement custom query
 impl CustomQuery for BitBadgesQuery {}
 
+
 /// BitBadgesQuery is defines available query datas
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub enum BitBadgesQuery {
+    #[serde(rename_all = "camelCase")]
+    QueryProtocol {
+      name: String,
+    },
+
+    #[serde(rename_all = "camelCase")]
+    QueryCollectionIdForProtocol {
+      name: String,
+      address: String,
+    },
+
     #[serde(rename_all = "camelCase")]
     QueryCollection {
       collection_id: String,
@@ -45,6 +57,17 @@ pub enum BitBadgesQuery {
       leaf_index: String,
     },
 
+}
+
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct QueryGetProtocolResponse {
+    pub protocol: Protocol,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct QueryGetCollectionIdForProtocolResponse {
+    pub collection_id: String, //Uint
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]

@@ -6,6 +6,50 @@
     {
       "type": "object",
       "required": [
+        "queryProtocol"
+      ],
+      "properties": {
+        "queryProtocol": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
+        "queryCollectionIdForProtocol"
+      ],
+      "properties": {
+        "queryCollectionIdForProtocol": {
+          "type": "object",
+          "required": [
+            "address",
+            "name"
+          ],
+          "properties": {
+            "address": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": [
         "queryCollection"
       ],
       "properties": {
