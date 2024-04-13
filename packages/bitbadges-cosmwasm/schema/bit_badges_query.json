@@ -6,40 +6,16 @@
     {
       "type": "object",
       "required": [
-        "queryProtocol"
+        "queryValueAtLocation"
       ],
       "properties": {
-        "queryProtocol": {
+        "queryValueAtLocation": {
           "type": "object",
           "required": [
-            "name"
+            "locationId"
           ],
           "properties": {
-            "name": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
-        "queryCollectionIdForProtocol"
-      ],
-      "properties": {
-        "queryCollectionIdForProtocol": {
-          "type": "object",
-          "required": [
-            "address",
-            "name"
-          ],
-          "properties": {
-            "address": {
-              "type": "string"
-            },
-            "name": {
+            "locationId": {
               "type": "string"
             }
           }
@@ -121,6 +97,7 @@
           "type": "object",
           "required": [
             "amountTrackerId",
+            "approvalId",
             "approvalLevel",
             "approvedAddress",
             "approverAddress",
@@ -129,6 +106,9 @@
           ],
           "properties": {
             "amountTrackerId": {
+              "type": "string"
+            },
+            "approvalId": {
               "type": "string"
             },
             "approvalLevel": {
@@ -160,6 +140,7 @@
         "queryChallengeTracker": {
           "type": "object",
           "required": [
+            "approvalId",
             "approvalLevel",
             "approverAddress",
             "challengeTrackerId",
@@ -167,6 +148,9 @@
             "leafIndex"
           ],
           "properties": {
+            "approvalId": {
+              "type": "string"
+            },
             "approvalLevel": {
               "type": "string"
             },

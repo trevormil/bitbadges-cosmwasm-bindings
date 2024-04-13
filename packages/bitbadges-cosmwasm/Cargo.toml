@@ -1,11 +1,10 @@
 [package]
 name = "bitbadges-cosmwasm"
-version = "0.0.8"
+version = "0.0.9"
 authors = ["Lyubomir Yonchev <lyubomir.yonchev@limechain.tech>", "Trevor Miller <trevormil@comcast.net>"]
 edition = "2018"
 description = "Bindings for CosmWasm contracts to call into custom modules of BitBadges Node"
 repository = "https://github.com/bitbadges/bitbadges-cosmwasm-bindings"
-license = "Apache-2.0"
 readme = "README.md"
 
 [features]

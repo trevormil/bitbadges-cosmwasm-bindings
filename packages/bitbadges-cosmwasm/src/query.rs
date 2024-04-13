@@ -3,9 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use cosmwasm_std::CustomQuery;
 
-use crate::{ApprovalTracker, AddressList, BadgeCollection, UserBalanceStore, Protocol};
-
-// use crate::msg::{UserBalance, BadgeCollection};
+use crate::{AddressList, AnchorData, ApprovalTracker, BadgeCollection, Protocol, UserBalanceStore};
 
 // implement custom query
 impl CustomQuery for BitBadgesQuery {}
@@ -15,15 +13,20 @@ impl CustomQuery for BitBadgesQuery {}
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]
 pub enum BitBadgesQuery {
-    #[serde(rename_all = "camelCase")]
-    QueryProtocol {
-      name: String,
-    },
+    // #[serde(rename_all = "camelCase")]
+    // QueryProtocol {
+    //   name: String,
+    // },
+
+    // #[serde(rename_all = "camelCase")]
+    // QueryCollectionIdForProtocol {
+    //   name: String,
+    //   address: String,
+    // },
 
     #[serde(rename_all = "camelCase")]
-    QueryCollectionIdForProtocol {
-      name: String,
-      address: String,
+    QueryValueAtLocation {
+      location_id: String,
     },
 
     #[serde(rename_all = "camelCase")]
@@ -42,6 +45,7 @@ pub enum BitBadgesQuery {
     #[serde(rename_all = "camelCase")]
     QueryApprovalTracker {
       collection_id: String,
+      approval_id: String,
       approval_level: String,
       approver_address: String,
       amount_tracker_id: String,
@@ -51,12 +55,18 @@ pub enum BitBadgesQuery {
     #[serde(rename_all = "camelCase")]
     QueryChallengeTracker {
       collection_id: String,
+      approval_id: String,
       approval_level: String,
       approver_address: String,
       challenge_tracker_id: String,
       leaf_index: String,
     },
 
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct QueryValueAtLocationResponse {
+    pub anchor_data: AnchorData,
 }
 
 

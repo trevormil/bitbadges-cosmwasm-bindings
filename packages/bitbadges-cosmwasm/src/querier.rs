@@ -11,24 +11,33 @@ impl<'a> BitBadgesQuerier<'a> {
         BitBadgesQuerier { querier }
     }
 
-    pub fn query_protocol<T: Into<String>>(&self, name: String) -> StdResult<String> {
-        let request = BitBadgesQuery::QueryProtocol { 
-            name
+    pub fn query_value_at_location<T: Into<String>>(&self, location: String) -> StdResult<String> {
+        let request = BitBadgesQuery::QueryValueAtLocation { 
+            location_id: location
         }
         .into();
 
         self.querier.query(&request)
     }
 
-    pub fn query_collection_id_for_protocol<T: Into<String>>(&self, name: String, address: String) -> StdResult<String> {
-        let request = BitBadgesQuery::QueryCollectionIdForProtocol { 
-            name,
-            address
-        }
-        .into();
+    // pub fn query_protocol<T: Into<String>>(&self, name: String) -> StdResult<String> {
+    //     let request = BitBadgesQuery::QueryProtocol { 
+    //         name
+    //     }
+    //     .into();
 
-        self.querier.query(&request)
-    }
+    //     self.querier.query(&request)
+    // }
+
+    // pub fn query_collection_id_for_protocol<T: Into<String>>(&self, name: String, address: String) -> StdResult<String> {
+    //     let request = BitBadgesQuery::QueryCollectionIdForProtocol { 
+    //         name,
+    //         address
+    //     }
+    //     .into();
+
+    //     self.querier.query(&request)
+    // }
 
     pub fn query_collection<T: Into<String>>(&self, collection_id: String) -> StdResult<String> {
         let request = BitBadgesQuery::QueryCollection { 
@@ -58,10 +67,11 @@ impl<'a> BitBadgesQuerier<'a> {
         self.querier.query(&request)
     }
 
-    pub fn query_approvals_tracker<T: Into<String>>(&self, collection_id: String, approval_level: String, approver_address: String, amount_tracker_id: String, tracker_type: String, approved_address: String) -> StdResult<String> {
+    pub fn query_approvals_tracker<T: Into<String>>(&self, collection_id: String, approval_level: String, approver_address: String, approval_id: String, amount_tracker_id: String, tracker_type: String, approved_address: String) -> StdResult<String> {
         let request = BitBadgesQuery::QueryApprovalTracker { 
             collection_id,
             approval_level,
+            approval_id,
             approver_address,
             amount_tracker_id,
             tracker_type,
@@ -72,9 +82,10 @@ impl<'a> BitBadgesQuerier<'a> {
         self.querier.query(&request)
     }
 
-    pub fn query_num_used_for_merkle_challenge<T: Into<String>>(&self, collection_id: String, approval_level: String, approver_address: String, challenge_tracker_id: String, leaf_index: String) -> StdResult<String> {
+    pub fn query_num_used_for_merkle_challenge<T: Into<String>>(&self, collection_id: String, approval_level: String, approver_address: String, approval_id: String, challenge_tracker_id: String, leaf_index: String) -> StdResult<String> {
         let request = BitBadgesQuery::QueryChallengeTracker { 
             collection_id,
+            approval_id,
             approval_level,
             approver_address,
             challenge_tracker_id,

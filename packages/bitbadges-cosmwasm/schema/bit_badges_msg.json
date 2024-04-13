@@ -5,144 +5,16 @@
     {
       "type": "object",
       "required": [
-        "setCollectionForProtocolMsg"
+        "addCustomData"
       ],
       "properties": {
-        "setCollectionForProtocolMsg": {
+        "addCustomData": {
           "type": "object",
           "required": [
-            "collectionId",
-            "creator",
-            "name"
+            "data"
           ],
           "properties": {
-            "collectionId": {
-              "type": "string"
-            },
-            "creator": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
-        "unsetCollectionForProtocolMsg"
-      ],
-      "properties": {
-        "unsetCollectionForProtocolMsg": {
-          "type": "object",
-          "required": [
-            "creator",
-            "name"
-          ],
-          "properties": {
-            "creator": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
-        "createProtocolMsg"
-      ],
-      "properties": {
-        "createProtocolMsg": {
-          "type": "object",
-          "required": [
-            "creator",
-            "customData",
-            "isFrozen",
-            "name",
-            "uri"
-          ],
-          "properties": {
-            "creator": {
-              "type": "string"
-            },
-            "customData": {
-              "type": "string"
-            },
-            "isFrozen": {
-              "type": "boolean"
-            },
-            "name": {
-              "type": "string"
-            },
-            "uri": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
-        "updateProtocolMsg"
-      ],
-      "properties": {
-        "updateProtocolMsg": {
-          "type": "object",
-          "required": [
-            "creator",
-            "customData",
-            "isFrozen",
-            "name",
-            "uri"
-          ],
-          "properties": {
-            "creator": {
-              "type": "string"
-            },
-            "customData": {
-              "type": "string"
-            },
-            "isFrozen": {
-              "type": "boolean"
-            },
-            "name": {
-              "type": "string"
-            },
-            "uri": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "additionalProperties": false
-    },
-    {
-      "type": "object",
-      "required": [
-        "deleteProtocolMsg"
-      ],
-      "properties": {
-        "deleteProtocolMsg": {
-          "type": "object",
-          "required": [
-            "creator",
-            "name"
-          ],
-          "properties": {
-            "creator": {
-              "type": "string"
-            },
-            "name": {
+            "data": {
               "type": "string"
             }
           }
@@ -633,12 +505,16 @@
     "ApprovalAmounts": {
       "type": "object",
       "required": [
+        "amountTrackerId",
         "overallApprovalAmount",
         "perFromAddressApprovalAmount",
         "perInitiatedByAddressApprovalAmount",
         "perToAddressApprovalAmount"
       ],
       "properties": {
+        "amountTrackerId": {
+          "type": "string"
+        },
         "overallApprovalAmount": {
           "type": "string"
         },
@@ -657,8 +533,9 @@
       "type": "object",
       "required": [
         "approvalAmounts",
+        "coinTransfers",
         "maxNumTransfers",
-        "merkleChallenge",
+        "merkleChallenges",
         "mustOwnBadges",
         "overridesFromOutgoingApprovals",
         "overridesToIncomingApprovals",
@@ -666,17 +543,27 @@
         "requireFromDoesNotEqualInitiatedBy",
         "requireFromEqualsInitiatedBy",
         "requireToDoesNotEqualInitiatedBy",
-        "requireToEqualsInitiatedBy"
+        "requireToEqualsInitiatedBy",
+        "zkProofs"
       ],
       "properties": {
         "approvalAmounts": {
           "$ref": "#/definitions/ApprovalAmounts"
         },
+        "coinTransfers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CoinTransfer"
+          }
+        },
         "maxNumTransfers": {
           "$ref": "#/definitions/MaxNumTransfers"
         },
-        "merkleChallenge": {
-          "$ref": "#/definitions/MerkleChallenge"
+        "merkleChallenges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MerkleChallenge"
+          }
         },
         "mustOwnBadges": {
           "type": "array",
@@ -704,6 +591,12 @@
         },
         "requireToEqualsInitiatedBy": {
           "type": "boolean"
+        },
+        "zkProofs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZkProof"
+          }
         }
       }
     },
@@ -829,14 +722,30 @@
         }
       }
     },
+    "CoinTransfer": {
+      "type": "object",
+      "required": [
+        "coins",
+        "to"
+      ],
+      "properties": {
+        "coins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CosmosCoin"
+          }
+        },
+        "to": {
+          "type": "string"
+        }
+      }
+    },
     "CollectionApproval": {
       "type": "object",
       "required": [
-        "amountTrackerId",
         "approvalCriteria",
         "approvalId",
         "badgeIds",
-        "challengeTrackerId",
         "customData",
         "fromListId",
         "initiatedByListId",
@@ -846,9 +755,6 @@
         "uri"
       ],
       "properties": {
-        "amountTrackerId": {
-          "type": "string"
-        },
         "approvalCriteria": {
           "$ref": "#/definitions/ApprovalCriteria"
         },
@@ -860,9 +766,6 @@
           "items": {
             "$ref": "#/definitions/UintRange"
           }
-        },
-        "challengeTrackerId": {
-          "type": "string"
         },
         "customData": {
           "type": "string"
@@ -896,9 +799,7 @@
     "CollectionApprovalPermission": {
       "type": "object",
       "required": [
-        "amountTrackerId",
         "badgeIds",
-        "challengeTrackerId",
         "fromListId",
         "initiatedByListId",
         "ownershipTimes",
@@ -908,17 +809,11 @@
         "transferTimes"
       ],
       "properties": {
-        "amountTrackerId": {
-          "type": "string"
-        },
         "badgeIds": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
-        },
-        "challengeTrackerId": {
-          "type": "string"
         },
         "fromListId": {
           "type": "string"
@@ -1065,6 +960,21 @@
         }
       }
     },
+    "CosmosCoin": {
+      "type": "object",
+      "required": [
+        "amount",
+        "denom"
+      ],
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "denom": {
+          "type": "string"
+        }
+      }
+    },
     "CustomDataTimeline": {
       "type": "object",
       "required": [
@@ -1087,22 +997,33 @@
       "type": "object",
       "required": [
         "approvalAmounts",
+        "coinTransfers",
         "maxNumTransfers",
-        "merkleChallenge",
+        "merkleChallenges",
         "mustOwnBadges",
         "predeterminedBalances",
         "requireFromDoesNotEqualInitiatedBy",
-        "requireFromEqualsInitiatedBy"
+        "requireFromEqualsInitiatedBy",
+        "zkProofs"
       ],
       "properties": {
         "approvalAmounts": {
           "$ref": "#/definitions/ApprovalAmounts"
         },
+        "coinTransfers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CoinTransfer"
+          }
+        },
         "maxNumTransfers": {
           "$ref": "#/definitions/MaxNumTransfers"
         },
-        "merkleChallenge": {
-          "$ref": "#/definitions/MerkleChallenge"
+        "merkleChallenges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MerkleChallenge"
+          }
         },
         "mustOwnBadges": {
           "type": "array",
@@ -1118,6 +1039,12 @@
         },
         "requireFromEqualsInitiatedBy": {
           "type": "boolean"
+        },
+        "zkProofs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZkProof"
+          }
         }
       }
     },
@@ -1196,12 +1123,16 @@
     "MaxNumTransfers": {
       "type": "object",
       "required": [
+        "amountTrackerId",
         "overallMaxNumTransfers",
         "perFromAddressMaxNumTransfers",
         "perInitiatedByAddressMaxNumTransfers",
         "perToAddressMaxNumTransfers"
       ],
       "properties": {
+        "amountTrackerId": {
+          "type": "string"
+        },
         "overallMaxNumTransfers": {
           "type": "string"
         },
@@ -1219,6 +1150,7 @@
     "MerkleChallenge": {
       "type": "object",
       "required": [
+        "challengeTrackerId",
         "customData",
         "expectedProofLength",
         "maxUsesPerLeaf",
@@ -1227,6 +1159,9 @@
         "useCreatorAddressAsLeaf"
       ],
       "properties": {
+        "challengeTrackerId": {
+          "type": "string"
+        },
         "customData": {
           "type": "string"
         },
@@ -1354,22 +1289,33 @@
       "type": "object",
       "required": [
         "approvalAmounts",
+        "coinTransfers",
         "maxNumTransfers",
-        "merkleChallenge",
+        "merkleChallenges",
         "mustOwnBadges",
         "predeterminedBalances",
         "requireToDoesNotEqualInitiatedBy",
-        "requireToEqualsInitiatedBy"
+        "requireToEqualsInitiatedBy",
+        "zkProofs"
       ],
       "properties": {
         "approvalAmounts": {
           "$ref": "#/definitions/ApprovalAmounts"
         },
+        "coinTransfers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CoinTransfer"
+          }
+        },
         "maxNumTransfers": {
           "$ref": "#/definitions/MaxNumTransfers"
         },
-        "merkleChallenge": {
-          "$ref": "#/definitions/MerkleChallenge"
+        "merkleChallenges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MerkleChallenge"
+          }
         },
         "mustOwnBadges": {
           "type": "array",
@@ -1385,6 +1331,12 @@
         },
         "requireToEqualsInitiatedBy": {
           "type": "boolean"
+        },
+        "zkProofs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZkProof"
+          }
         }
       }
     },
@@ -1413,6 +1365,7 @@
     "PredeterminedOrderCalculationMethod": {
       "type": "object",
       "required": [
+        "challengeTrackerId",
         "useMerkleChallengeLeafIndex",
         "useOverallNumTransfers",
         "usePerFromAddressNumTransfers",
@@ -1420,6 +1373,9 @@
         "usePerToAddressNumTransfers"
       ],
       "properties": {
+        "challengeTrackerId": {
+          "type": "string"
+        },
         "useMerkleChallengeLeafIndex": {
           "type": "boolean"
         },
@@ -1530,7 +1486,8 @@
         "merkleProofs",
         "onlyCheckPrioritizedApprovals",
         "prioritizedApprovals",
-        "toAddresses"
+        "toAddresses",
+        "zkProofSolutions"
       ],
       "properties": {
         "balances": {
@@ -1574,6 +1531,12 @@
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "zkProofSolutions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZkProofSolution"
           }
         }
       }
@@ -1636,11 +1599,9 @@
     "UserIncomingApproval": {
       "type": "object",
       "required": [
-        "amountTrackerId",
         "approvalCriteria",
         "approvalId",
         "badgeIds",
-        "challengeTrackerId",
         "customData",
         "fromListId",
         "initiatedByListId",
@@ -1649,9 +1610,6 @@
         "uri"
       ],
       "properties": {
-        "amountTrackerId": {
-          "type": "string"
-        },
         "approvalCriteria": {
           "$ref": "#/definitions/IncomingApprovalCriteria"
         },
@@ -1663,9 +1621,6 @@
           "items": {
             "$ref": "#/definitions/UintRange"
           }
-        },
-        "challengeTrackerId": {
-          "type": "string"
         },
         "customData": {
           "type": "string"
@@ -1696,9 +1651,7 @@
     "UserIncomingApprovalPermission": {
       "type": "object",
       "required": [
-        "amountTrackerId",
         "badgeIds",
-        "challengeTrackerId",
         "fromListId",
         "initiatedByListId",
         "ownershipTimes",
@@ -1707,17 +1660,11 @@
         "transferTimes"
       ],
       "properties": {
-        "amountTrackerId": {
-          "type": "string"
-        },
         "badgeIds": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
-        },
-        "challengeTrackerId": {
-          "type": "string"
         },
         "fromListId": {
           "type": "string"
@@ -1754,11 +1701,9 @@
     "UserOutgoingApproval": {
       "type": "object",
       "required": [
-        "amountTrackerId",
         "approvalCriteria",
         "approvalId",
         "badgeIds",
-        "challengeTrackerId",
         "customData",
         "initiatedByListId",
         "ownershipTimes",
@@ -1767,9 +1712,6 @@
         "uri"
       ],
       "properties": {
-        "amountTrackerId": {
-          "type": "string"
-        },
         "approvalCriteria": {
           "$ref": "#/definitions/OutgoingApprovalCriteria"
         },
@@ -1781,9 +1723,6 @@
           "items": {
             "$ref": "#/definitions/UintRange"
           }
-        },
-        "challengeTrackerId": {
-          "type": "string"
         },
         "customData": {
           "type": "string"
@@ -1814,9 +1753,7 @@
     "UserOutgoingApprovalPermission": {
       "type": "object",
       "required": [
-        "amountTrackerId",
         "badgeIds",
-        "challengeTrackerId",
         "initiatedByListId",
         "ownershipTimes",
         "permanentlyPermittedTimes",
@@ -1825,17 +1762,11 @@
         "transferTimes"
       ],
       "properties": {
-        "amountTrackerId": {
-          "type": "string"
-        },
         "badgeIds": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
           }
-        },
-        "challengeTrackerId": {
-          "type": "string"
         },
         "initiatedByListId": {
           "type": "string"
@@ -1901,6 +1832,44 @@
           "items": {
             "$ref": "#/definitions/UserOutgoingApprovalPermission"
           }
+        }
+      }
+    },
+    "ZkProof": {
+      "type": "object",
+      "required": [
+        "customData",
+        "uri",
+        "verificationKey",
+        "zkpTrackerId"
+      ],
+      "properties": {
+        "customData": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "verificationKey": {
+          "type": "string"
+        },
+        "zkpTrackerId": {
+          "type": "string"
+        }
+      }
+    },
+    "ZkProofSolution": {
+      "type": "object",
+      "required": [
+        "proof",
+        "publicInputs"
+      ],
+      "properties": {
+        "proof": {
+          "type": "string"
+        },
+        "publicInputs": {
+          "type": "string"
         }
       }
     }
