@@ -619,6 +619,34 @@
         }
       }
     },
+    "BadgeIdsActionPermission": {
+      "type": "object",
+      "required": [
+        "badgeIds",
+        "permanentlyPermittedTimes",
+        "permanentyForbiddenTimes"
+      ],
+      "properties": {
+        "badgeIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permanentlyPermittedTimes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        },
+        "permanentyForbiddenTimes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UintRange"
+          }
+        }
+      }
+    },
     "BadgeMetadata": {
       "type": "object",
       "required": [
@@ -680,41 +708,6 @@
           }
         },
         "ownershipTimes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        }
-      }
-    },
-    "BalancesActionPermission": {
-      "type": "object",
-      "required": [
-        "badgeIds",
-        "ownershipTimes",
-        "permanentlyPermittedTimes",
-        "permanentyForbiddenTimes"
-      ],
-      "properties": {
-        "badgeIds": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "ownershipTimes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "permanentlyPermittedTimes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UintRange"
-          }
-        },
-        "permanentyForbiddenTimes": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UintRange"
@@ -887,7 +880,6 @@
       "type": "object",
       "required": [
         "canArchiveCollection",
-        "canCreateMoreBadges",
         "canDeleteCollection",
         "canUpdateBadgeMetadata",
         "canUpdateCollectionApprovals",
@@ -895,19 +887,14 @@
         "canUpdateCustomData",
         "canUpdateManager",
         "canUpdateOffChainBalancesMetadata",
-        "canUpdateStandards"
+        "canUpdateStandards",
+        "canUpdateValidBadgeIds"
       ],
       "properties": {
         "canArchiveCollection": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TimedUpdatePermission"
-          }
-        },
-        "canCreateMoreBadges": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/BalancesActionPermission"
           }
         },
         "canDeleteCollection": {
@@ -956,6 +943,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/TimedUpdatePermission"
+          }
+        },
+        "canUpdateValidBadgeIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BadgeIdsActionPermission"
           }
         }
       }
