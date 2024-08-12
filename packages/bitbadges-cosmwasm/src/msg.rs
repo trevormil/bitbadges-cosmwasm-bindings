@@ -81,7 +81,7 @@ pub enum BitBadgesMsg {
   CreateCollectionMsg {
     balances_type: String,
     default_balances: UserBalanceStore,
-    badges_to_create: Vec<Balance>,
+    badge_ids_to_add: Vec<UintRange>,
     collection_permissions: CollectionPermissions,
     manager_timeline: Vec<ManagerTimeline>,
     collection_metadata_timeline: Vec<CollectionMetadataTimeline>,
@@ -97,7 +97,7 @@ pub enum BitBadgesMsg {
   #[serde(rename_all = "camelCase")]
   UpdateCollectionMsg {
     collection_id: String,
-    badges_to_create: Vec<Balance>,
+    badge_ids_to_add: Vec<UintRange>,
     update_collection_permissions: bool,
     collection_permissions: CollectionPermissions,
     update_manager_timeline: bool,
@@ -123,7 +123,7 @@ pub enum BitBadgesMsg {
     collection_id: String,
     balances_type: String,
     default_balances: UserBalanceStore,
-    badges_to_create: Vec<Balance>,
+    badge_ids_to_add: Vec<UintRange>,
     update_collection_permissions: bool,
     collection_permissions: CollectionPermissions,
     update_manager_timeline: bool,
@@ -246,7 +246,7 @@ pub fn transfer_badges_msg(
 pub fn create_collection_msg(
   balances_type: String,
   default_balances: UserBalanceStore,
-  badges_to_create: Vec<Balance>,
+  badge_ids_to_add: Vec<UintRange>,
   collection_permissions: CollectionPermissions,
   manager_timeline: Vec<ManagerTimeline>,
   collection_metadata_timeline: Vec<CollectionMetadataTimeline>,
@@ -260,7 +260,7 @@ pub fn create_collection_msg(
   BitBadgesMsg::CreateCollectionMsg { 
     balances_type,
     default_balances: default_balances,
-    badges_to_create,
+    badge_ids_to_add,
     collection_permissions,
     manager_timeline,
     collection_metadata_timeline,
@@ -275,7 +275,7 @@ pub fn create_collection_msg(
   
 pub fn update_collection_msg(
   collection_id: String,
-  badges_to_create: Vec<Balance>,
+  badge_ids_to_add: Vec<UintRange>,
   update_collection_permissions: bool,
   collection_permissions: CollectionPermissions,
   update_manager_timeline: bool,
@@ -297,7 +297,7 @@ pub fn update_collection_msg(
 ) -> CosmosMsg<BitBadgesMsg> {
   BitBadgesMsg::UpdateCollectionMsg {
       collection_id,
-      badges_to_create,
+      badge_ids_to_add,
       update_collection_permissions,
       collection_permissions,
       update_manager_timeline,
@@ -324,7 +324,7 @@ pub fn universal_update_collection_msg(
   collection_id: String,
   balances_type: String,
   default_balances: UserBalanceStore,
-  badges_to_create: Vec<Balance>,
+  badge_ids_to_add: Vec<UintRange>,
   update_collection_permissions: bool,
   collection_permissions: CollectionPermissions,
   update_manager_timeline: bool,
@@ -348,7 +348,7 @@ pub fn universal_update_collection_msg(
       collection_id,
       balances_type,
       default_balances: default_balances,
-      badges_to_create,
+      badge_ids_to_add,
       update_collection_permissions,
       collection_permissions,
       update_manager_timeline,
@@ -769,7 +769,7 @@ pub struct CollectionPermissions {
     pub can_update_custom_data: Vec<TimedUpdatePermission>,
     pub can_update_manager: Vec<TimedUpdatePermission>,
     pub can_update_collection_metadata: Vec<TimedUpdatePermission>,
-    pub can_create_more_badges: Vec<BalancesActionPermission>,
+    pub can_update_valid_badge_ids: Vec<BadgeIdsActionPermission>,
     pub can_update_badge_metadata: Vec<TimedUpdateWithBadgeIdsPermission>,
     pub can_update_collection_approvals: Vec<CollectionApprovalPermission>,
 }
@@ -827,9 +827,8 @@ pub struct UserIncomingApprovalPermission {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "camelCase")]
-pub struct BalancesActionPermission {
+pub struct BadgeIdsActionPermission {
     pub badge_ids: Vec<UintRange>,
-    pub ownership_times: Vec<UintRange>,
     pub permanently_permitted_times: Vec<UintRange>,
     pub permanenty_forbidden_times: Vec<UintRange>,
 }
@@ -891,6 +890,7 @@ pub struct BadgeCollection {
   default_balances: UserBalanceStore,
   created_by: String,
   alias_address: String,
+  valid_badge_ids: Vec<UintRange>,
 }
 
 

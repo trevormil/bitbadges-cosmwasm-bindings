@@ -101,8 +101,8 @@
         "createCollectionMsg": {
           "type": "object",
           "required": [
+            "badgeIdsToAdd",
             "badgeMetadataTimeline",
-            "badgesToCreate",
             "balancesType",
             "collectionApprovals",
             "collectionMetadataTimeline",
@@ -115,16 +115,16 @@
             "standardsTimeline"
           ],
           "properties": {
+            "badgeIdsToAdd": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UintRange"
+              }
+            },
             "badgeMetadataTimeline": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/BadgeMetadataTimeline"
-              }
-            },
-            "badgesToCreate": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Balance"
               }
             },
             "balancesType": {
@@ -192,8 +192,8 @@
         "updateCollectionMsg": {
           "type": "object",
           "required": [
+            "badgeIdsToAdd",
             "badgeMetadataTimeline",
-            "badgesToCreate",
             "collectionApprovals",
             "collectionId",
             "collectionMetadataTimeline",
@@ -214,16 +214,16 @@
             "updateStandardsTimeline"
           ],
           "properties": {
+            "badgeIdsToAdd": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UintRange"
+              }
+            },
             "badgeMetadataTimeline": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/BadgeMetadataTimeline"
-              }
-            },
-            "badgesToCreate": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Balance"
               }
             },
             "collectionApprovals": {
@@ -315,8 +315,8 @@
         "universalUpdateCollectionMsg": {
           "type": "object",
           "required": [
+            "badgeIdsToAdd",
             "badgeMetadataTimeline",
-            "badgesToCreate",
             "balancesType",
             "collectionApprovals",
             "collectionId",
@@ -339,16 +339,16 @@
             "updateStandardsTimeline"
           ],
           "properties": {
+            "badgeIdsToAdd": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UintRange"
+              }
+            },
             "badgeMetadataTimeline": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/BadgeMetadataTimeline"
-              }
-            },
-            "badgesToCreate": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Balance"
               }
             },
             "balancesType": {
